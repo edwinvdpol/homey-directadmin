@@ -1,0 +1,25 @@
+{
+    "name": "com.directadmin",
+    "description": "Monitor your DirectAdmin servers and domains in Homey",
+    "version": "1.0.0",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/edwinvdpol/com.directadmin.git"
+    },
+    "keywords": [],
+    "author": "Edwin van de Pol",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/edwinvdpol/com.directadmin/issues"
+    },
+    "dependencies": {
+        "boolean": "^1.0.0",
+        "httpreq": "^0.4.24",
+        "prettysize": "^2.0.0",
+        "qs": "^6.6.0"
+    }
+}

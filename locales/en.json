@@ -1,0 +1,15 @@
+{
+    "login": "Login",
+    "password": "Password",
+    "port": "Port",
+    "username": "Username",
+    "error": {
+        "domain_is_deactivated": "Domain is deactivated",
+        "domain_is_suspended": "Domain is suspended",
+        "domain_not_found": "Domain not found",
+        "invalid_data": "The server returned invalid data",
+        "login_failed": "Unable to authenticate on server",
+        "no_domains_found": "No domains found",
+        "permission_denied": "You do not have the required permissions"
+    }
+}
