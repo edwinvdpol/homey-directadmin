@@ -4,7 +4,10 @@
     "compatibility": ">=2.0.0",
     "sdk": 2,
     "brandColor": "#1384B2",
-    "name": "DirectAdmin",
+    "name": {
+        "en": "DirectAdmin",
+        "nl": "DirectAdmin"
+    },
     "description": {
         "en": "Monitor your DirectAdmin servers and domains",
         "nl": "Monitor je DirectAdmin servers and domeinen"
