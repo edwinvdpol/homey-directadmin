@@ -6,14 +6,8 @@ Monitor your [DirectAdmin](https://www.directadmin.com) servers and domains.
 
 Homey will automatically refresh the data every **15 minutes**.
 
-If you like this app, consider a donation to support development:
 
-[![Paypal donate][pp-donate-image]][pp-donate-link]
-
-
-## Statistics
-
-### Server (*admin only*)
+## Supported server statistics (*admin only*)
 - License information
 - Current DirectAdmin version
 - Number of domains on the server
@@ -26,7 +20,8 @@ If you like this app, consider a donation to support development:
 - Software update available
 - Operating system
 
-### Domain
+
+## Supported domain statistics
 - Domain is active
 - Domain is suspended
 - Domain bandwidth (insights)
@@ -38,6 +33,7 @@ If you like this app, consider a donation to support development:
 ## Supported triggers
 - When software update is available
 
+
 ## Supported languages
 - English
 - Dutch (Nederlands)
@@ -47,10 +43,3 @@ If you like this app, consider a donation to support development:
 If you have any questions or feedback, please contact me on [Slack](https://athomcommunity.slack.com/team/evdpol).
 
 Please report issues and feature requests at the [issues section](https://github.com/edwinvdpol/com.directadmin/issues) on GitHub.
-
-
-## Changelog
-[Check it out here!](https://github.com/edwinvdpol/com.directadmin/blob/master/CHANGELOG.md)
-
-[pp-donate-link]: https://www.paypal.me/edwinvdpol
-[pp-donate-image]: https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif
