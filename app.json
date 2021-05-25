@@ -1,374 +1,392 @@
 {
-    "id": "com.directadmin",
-    "version": "1.0.1",
-    "compatibility": ">=2.0.0",
-    "sdk": 2,
-    "brandColor": "#1384B2",
-    "name": {
-        "en": "DirectAdmin",
-        "nl": "DirectAdmin"
-    },
-    "description": {
-        "en": "DirectAdmin for Homey",
-        "nl": "DirectAdmin voor Homey"
-    },
-    "category": [ "internet" ],
-    "tags": {
-        "en": [ "directadmin", "monitor", "server", "domain", "online", "manager", "statistics" ],
-        "nl": [ "directadmin", "monitor", "server", "domein", "online", "beheer", "statistieken" ]
-    },
-    "images": {
-        "large": "/assets/images/large.png",
-        "small": "/assets/images/small.png"
-    },
-    "permissions": [],
-    "author": {
+  "id": "com.directadmin",
+  "version": "1.0.1",
+  "compatibility": ">=2.0.0",
+  "sdk": 2,
+  "brandColor": "#1384B2",
+  "name": {
+    "en": "DirectAdmin",
+    "nl": "DirectAdmin"
+  },
+  "description": {
+    "en": "DirectAdmin for Homey",
+    "nl": "DirectAdmin voor Homey"
+  },
+  "category": [
+    "internet"
+  ],
+  "tags": {
+    "en": [
+      "directadmin",
+      "monitor",
+      "server",
+      "domain",
+      "online",
+      "manager",
+      "statistics"
+    ],
+    "nl": [
+      "directadmin",
+      "monitor",
+      "server",
+      "domein",
+      "online",
+      "beheer",
+      "statistieken"
+    ]
+  },
+  "images": {
+    "large": "/assets/images/large.png",
+    "small": "/assets/images/small.png"
+  },
+  "permissions": [],
+  "author": {
+    "name": "Edwin van de Pol",
+    "email": "developer@edwinvandepol.nl"
+  },
+  "contributors": {
+    "developers": [
+      {
         "name": "Edwin van de Pol",
         "email": "developer@edwinvandepol.nl"
-    },
-    "contributors": {
-        "developers": [
-            {
-                "name": "Edwin van de Pol",
-                "email": "developer@edwinvandepol.nl"
-            }
+      }
+    ]
+  },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "edwinvdpol"
+      }
+    }
+  },
+  "flow": {
+    "triggers": [
+      {
+        "id": "update_available_true",
+        "title": {
+          "en": "Software update available",
+          "nl": "Software update beschikbaar"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=server"
+          }
         ]
-    },
-    "contributing": {
-        "donate": {
-            "paypal": {
-                "username": "edwinvdpol"
-            }
-        }
-    },
-    "flow": {
-        "triggers": [
-            {
-                "id": "update_available_true",
-                "title": {
-                    "en": "Software update available",
-                    "nl": "Software update beschikbaar"
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=server"
-                    }
-                ]
-            }
-        ]
-    },
-    "drivers": [
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "id": "domain",
+      "name": {
+        "en": "Domain",
+        "nl": "Domein"
+      },
+      "images": {
+        "large": "/drivers/domain/assets/images/large.png",
+        "small": "/drivers/domain/assets/images/small.png"
+      },
+      "class": "other",
+      "capabilities": [
+        "active",
+        "suspended",
+        "bandwidth",
+        "quota",
+        "email_accounts"
+      ],
+      "pair": [
         {
-            "id": "domain",
-            "name": {
-                "en": "Domain",
-                "nl": "Domein"
-            },
-            "images": {
-                "large": "/drivers/domain/assets/images/large.png",
-                "small": "/drivers/domain/assets/images/small.png"
-            },
-            "class": "other",
-            "capabilities": [
-                "active",
-                "suspended",
-                "bandwidth",
-                "quota",
-                "email_accounts"
-            ],
-            "pair": [
-                {
-                    "id": "start"
-                },
-                {
-                    "id": "list_devices",
-                    "template": "list_devices",
-                    "navigation": {
-                        "next": "add_devices"
-                    }
-                },
-                {
-                    "id": "add_devices",
-                    "template": "add_devices"
-                }
-            ],
-            "settings": [
-                {
-                    "type": "group",
-                    "label": {
-                        "en": "Domain statistics",
-                        "nl": "Domein statistieken"
-                    },
-                    "children": [
-                        {
-                            "id": "domain_bandwidth",
-                            "type": "label",
-                            "label": {
-                                "en": "Bandwidth",
-                                "nl": "Bandbreedte"
-                            },
-                            "value": "-"
-                        },
-                        {
-                            "id": "domain_quota",
-                            "type": "label",
-                            "label": {
-                                "en": "Disk usage",
-                                "nl": "Schijfgebruik"
-                            },
-                            "value": "-"
-                        }
-                    ]
-                },
-                {
-                    "type": "group",
-                    "label": {
-                        "en": "Email statistics",
-                        "nl": "E-mail statistieken"
-                    },
-                    "children": [
-                        {
-                            "id": "email_accounts",
-                            "type": "label",
-                            "label": {
-                                "en": "Accounts",
-                                "nl": "Accounts"
-                            },
-                            "value": "-"
-                        },
-                        {
-                            "id": "email_quota",
-                            "type": "label",
-                            "label": {
-                                "en": "Disk usage",
-                                "nl": "Schijfgebruik"
-                            },
-                            "value": "-"
-                        }
-                    ]
-                }
-            ]
+          "id": "start"
         },
         {
-            "id": "server",
-            "name": {
-                "en": "Server",
-                "nl": "Server"
-            },
-            "images": {
-                "large": "/drivers/server/assets/images/large.png",
-                "small": "/drivers/server/assets/images/small.png"
-            },
-            "class": "other",
-            "capabilities": [
-                "update_available",
-                "server_bandwidth",
-                "databases",
-                "domains",
-                "email_accounts",
-                "email_forwarders",
-                "users",
-                "resellers"
-            ],
-            "pair": [
-                {
-                    "id": "start"
-                },
-                {
-                    "id": "list_devices",
-                    "template": "list_devices",
-                    "navigation": {
-                        "next": "add_devices"
-                    },
-                    "options": {
-                        "singular": true
-                    }
-                },
-                {
-                    "id": "add_devices",
-                    "template": "add_devices"
-                }
-            ],
-            "settings": [
-                {
-                    "type": "group",
-                    "label": {
-                        "en": "License information",
-                        "nl": "Licentie informatie"
-                    },
-                    "children": [
-                        {
-                            "id": "ip",
-                            "type": "label",
-                            "label": {
-                                "en": "License IP",
-                                "nl": "Licentie IP"
-                            },
-                            "value": "-"
-                        },
-                        {
-                            "id": "name",
-                            "type": "label",
-                            "label": {
-                                "en": "Name in license",
-                                "nl": "Naam in licentie"
-                            },
-                            "value": "-"
-                        },
-                        {
-                            "id": "os_name",
-                            "type": "label",
-                            "label": {
-                                "en": "Operating system",
-                                "nl": "Besturingssysteem"
-                            },
-                            "value": "-"
-                        },
-                        {
-                            "id": "version",
-                            "type": "label",
-                            "label": {
-                                "en": "Software version",
-                                "nl": "Software versie"
-                            },
-                            "value": "-"
-                        }
-                    ]
-                }
-            ]
-        }
-    ],
-    "capabilities": {
-        "active": {
-            "type": "boolean",
-            "getable": true,
-            "setable": false,
-            "icon": "/assets/domain.svg",
-            "title": {
-                "en": "Active",
-                "nl": "Actief"
-            }
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
         },
-        "bandwidth": {
-            "type": "number",
-            "insights": true,
-            "getable": true,
-            "setable": false,
-            "icon": "/assets/bandwidth.svg",
-            "decimals": 2,
-            "units": "MB",
-            "title": {
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Domain statistics",
+            "nl": "Domein statistieken"
+          },
+          "children": [
+            {
+              "id": "domain_bandwidth",
+              "type": "label",
+              "label": {
                 "en": "Bandwidth",
                 "nl": "Bandbreedte"
-            }
-        },
-        "databases": {
-            "type": "number",
-            "getable": true,
-            "setable": false,
-            "icon": "/assets/database.svg",
-            "title": {
-                "en": "Databases",
-                "nl": "Databases"
-            }
-        },
-        "domains": {
-            "type": "number",
-            "getable": true,
-            "setable": false,
-            "icon": "/assets/domain.svg",
-            "title": {
-                "en": "Domains",
-                "nl": "Domeinen"
-            }
-        },
-        "email_accounts": {
-            "type": "number",
-            "getable": true,
-            "setable": false,
-            "icon": "/assets/email.svg",
-            "title": {
-                "en": "Accounts",
-                "nl": "Accounts"
-            }
-        },
-        "email_forwarders": {
-            "type": "number",
-            "getable": true,
-            "setable": false,
-            "icon": "/assets/email.svg",
-            "title": {
-                "en": "Forwarders",
-                "nl": "Doorstuurders"
-            }
-        },
-        "quota": {
-            "type": "number",
-            "insights": true,
-            "getable": true,
-            "setable": false,
-            "icon": "/assets/harddrive.svg",
-            "decimals": 2,
-            "units": "MB",
-            "title": {
+              },
+              "value": "-"
+            },
+            {
+              "id": "domain_quota",
+              "type": "label",
+              "label": {
                 "en": "Disk usage",
                 "nl": "Schijfgebruik"
+              },
+              "value": "-"
             }
+          ]
         },
-        "resellers": {
-            "type": "number",
-            "getable": true,
-            "setable": false,
-            "icon": "/assets/reseller.svg",
-            "title": {
-                "en": "Resellers",
-                "nl": "Resellers"
+        {
+          "type": "group",
+          "label": {
+            "en": "Email statistics",
+            "nl": "E-mail statistieken"
+          },
+          "children": [
+            {
+              "id": "email_accounts",
+              "type": "label",
+              "label": {
+                "en": "Accounts",
+                "nl": "Accounts"
+              },
+              "value": "-"
+            },
+            {
+              "id": "email_quota",
+              "type": "label",
+              "label": {
+                "en": "Disk usage",
+                "nl": "Schijfgebruik"
+              },
+              "value": "-"
             }
-        },
-        "server_bandwidth": {
-            "type": "number",
-            "insights": true,
-            "getable": true,
-            "setable": false,
-            "icon": "/assets/bandwidth.svg",
-            "decimals": 2,
-            "units": "GB",
-            "title": {
-                "en": "Bandwidth",
-                "nl": "Bandbreedte"
-            }
-        },
-        "suspended": {
-            "type": "boolean",
-            "getable": true,
-            "setable": false,
-            "icon": "/assets/server_alert.svg",
-            "title": {
-                "en": "Suspended",
-                "nl": "Opgeschort"
-            }
-        },
-        "update_available": {
-            "type": "boolean",
-            "getable": true,
-            "setable": false,
-            "icon": "/assets/server_alert.svg",
-            "title": {
-                "en": "Update available",
-                "nl": "Update beschikbaar"
-            }
-        },
-        "users": {
-            "type": "number",
-            "getable": true,
-            "setable": false,
-            "icon": "/assets/users.svg",
-            "title": {
-                "en": "Users",
-                "nl": "Gebruikers"
-            }
+          ]
         }
+      ]
+    },
+    {
+      "id": "server",
+      "name": {
+        "en": "Server",
+        "nl": "Server"
+      },
+      "images": {
+        "large": "/drivers/server/assets/images/large.png",
+        "small": "/drivers/server/assets/images/small.png"
+      },
+      "class": "other",
+      "capabilities": [
+        "update_available",
+        "server_bandwidth",
+        "databases",
+        "domains",
+        "email_accounts",
+        "email_forwarders",
+        "users",
+        "resellers"
+      ],
+      "pair": [
+        {
+          "id": "start"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          },
+          "options": {
+            "singular": true
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "License information",
+            "nl": "Licentie informatie"
+          },
+          "children": [
+            {
+              "id": "ip",
+              "type": "label",
+              "label": {
+                "en": "License IP",
+                "nl": "Licentie IP"
+              },
+              "value": "-"
+            },
+            {
+              "id": "name",
+              "type": "label",
+              "label": {
+                "en": "Name in license",
+                "nl": "Naam in licentie"
+              },
+              "value": "-"
+            },
+            {
+              "id": "os_name",
+              "type": "label",
+              "label": {
+                "en": "Operating system",
+                "nl": "Besturingssysteem"
+              },
+              "value": "-"
+            },
+            {
+              "id": "version",
+              "type": "label",
+              "label": {
+                "en": "Software version",
+                "nl": "Software versie"
+              },
+              "value": "-"
+            }
+          ]
+        }
+      ]
     }
+  ],
+  "capabilities": {
+    "active": {
+      "type": "boolean",
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/domain.svg",
+      "title": {
+        "en": "Active",
+        "nl": "Actief"
+      }
+    },
+    "bandwidth": {
+      "type": "number",
+      "insights": true,
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/bandwidth.svg",
+      "decimals": 2,
+      "units": "MB",
+      "title": {
+        "en": "Bandwidth",
+        "nl": "Bandbreedte"
+      }
+    },
+    "databases": {
+      "type": "number",
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/database.svg",
+      "title": {
+        "en": "Databases",
+        "nl": "Databases"
+      }
+    },
+    "domains": {
+      "type": "number",
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/domain.svg",
+      "title": {
+        "en": "Domains",
+        "nl": "Domeinen"
+      }
+    },
+    "email_accounts": {
+      "type": "number",
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/email.svg",
+      "title": {
+        "en": "Accounts",
+        "nl": "Accounts"
+      }
+    },
+    "email_forwarders": {
+      "type": "number",
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/email.svg",
+      "title": {
+        "en": "Forwarders",
+        "nl": "Doorstuurders"
+      }
+    },
+    "quota": {
+      "type": "number",
+      "insights": true,
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/harddrive.svg",
+      "decimals": 2,
+      "units": "MB",
+      "title": {
+        "en": "Disk usage",
+        "nl": "Schijfgebruik"
+      }
+    },
+    "resellers": {
+      "type": "number",
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/reseller.svg",
+      "title": {
+        "en": "Resellers",
+        "nl": "Resellers"
+      }
+    },
+    "server_bandwidth": {
+      "type": "number",
+      "insights": true,
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/bandwidth.svg",
+      "decimals": 2,
+      "units": "GB",
+      "title": {
+        "en": "Bandwidth",
+        "nl": "Bandbreedte"
+      }
+    },
+    "suspended": {
+      "type": "boolean",
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/server_alert.svg",
+      "title": {
+        "en": "Suspended",
+        "nl": "Opgeschort"
+      }
+    },
+    "update_available": {
+      "type": "boolean",
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/server_alert.svg",
+      "title": {
+        "en": "Update available",
+        "nl": "Update beschikbaar"
+      }
+    },
+    "users": {
+      "type": "number",
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/users.svg",
+      "title": {
+        "en": "Users",
+        "nl": "Gebruikers"
+      }
+    }
+  }
 }

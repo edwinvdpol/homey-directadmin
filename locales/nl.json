@@ -1,15 +1,15 @@
 {
-    "login": "Inloggen",
-    "password": "Wachtwoord",
-    "port": "Poort",
-    "username": "Gebruikersnaam",
-    "error": {
-        "domain_is_deactivated": "Domein is niet actief",
-        "domain_is_suspended": "Domein is opgeschort",
-        "domain_not_found": "Domein niet gevonden",
-        "invalid_data": "De server gaf verkeerde data terug",
-        "login_failed": "Kan niet authoriseren op de server",
-        "no_domains_found": "Geen domeinen gevonden",
-        "permission_denied": "Je hebt niet voldoende rechten"
-    }
+  "login": "Inloggen",
+  "password": "Wachtwoord",
+  "port": "Poort",
+  "username": "Gebruikersnaam",
+  "error": {
+    "domain_is_deactivated": "Domein is niet actief",
+    "domain_is_suspended": "Domein is opgeschort",
+    "domain_not_found": "Domein niet gevonden",
+    "invalid_data": "De server gaf verkeerde data terug",
+    "login_failed": "Kan niet authoriseren op de server",
+    "no_domains_found": "Geen domeinen gevonden",
+    "permission_denied": "Je hebt niet voldoende rechten"
+  }
 }
