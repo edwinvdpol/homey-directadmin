@@ -1,7 +1,7 @@
 'use strict';
 
 const Homey = require('homey');
-const Device = require('../../lib/Device.js');
+const Device = require('/lib/Device.js');
 
 const refreshDeviceTimeout = 1000 * 60 * 15; // 15 minutes
 

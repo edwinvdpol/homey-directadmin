@@ -1,7 +1,7 @@
 'use strict';
 
 const Homey = require('homey');
-const Device = require('../../lib/Device.js');
+const Device = require('/lib/Device.js');
 const pretty = require('prettysize');
 
 const bytesInMb = 1048576;

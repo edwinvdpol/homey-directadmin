@@ -1,7 +1,7 @@
 'use strict';
 
-const Api = require('../../lib/Api');
-const Driver = require('../../lib/Driver');
+const Api = require('/lib/Api');
+const Driver = require('/lib/Driver');
 
 let foundDevices = [];
 
