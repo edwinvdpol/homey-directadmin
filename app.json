@@ -1,12 +1,12 @@
 {
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.directadmin",
   "version": "1.0.1",
   "compatibility": ">=2.0.0",
   "sdk": 2,
   "brandColor": "#1384B2",
   "name": {
-    "en": "DirectAdmin",
-    "nl": "DirectAdmin"
+    "en": "DirectAdmin"
   },
   "description": {
     "en": "DirectAdmin for Homey",
@@ -59,34 +59,17 @@
       }
     }
   },
-  "flow": {
-    "triggers": [
-      {
-        "id": "update_available_true",
-        "title": {
-          "en": "Software update available",
-          "nl": "Software update beschikbaar"
-        },
-        "args": [
-          {
-            "name": "device",
-            "type": "device",
-            "filter": "driver_id=server"
-          }
-        ]
-      }
-    ]
-  },
   "drivers": [
     {
+      "images": {
+        "small": "/drivers/domain/assets/images/small.png",
+        "large": "/drivers/domain/assets/images/large.png"
+      },
+      "icon": "/drivers/domain/assets/icon.svg",
       "id": "domain",
       "name": {
         "en": "Domain",
         "nl": "Domein"
-      },
-      "images": {
-        "large": "/drivers/domain/assets/images/large.png",
-        "small": "/drivers/domain/assets/images/small.png"
       },
       "class": "other",
       "capabilities": [
@@ -170,14 +153,14 @@
       ]
     },
     {
+      "images": {
+        "small": "/drivers/server/assets/images/small.png",
+        "large": "/drivers/server/assets/images/large.png"
+      },
+      "icon": "/drivers/server/assets/icon.svg",
       "id": "server",
       "name": {
-        "en": "Server",
-        "nl": "Server"
-      },
-      "images": {
-        "large": "/drivers/server/assets/images/large.png",
-        "small": "/drivers/server/assets/images/small.png"
+        "en": "Server"
       },
       "class": "other",
       "capabilities": [
@@ -258,6 +241,24 @@
       ]
     }
   ],
+  "flow": {
+    "triggers": [
+      {
+        "id": "update_available_true",
+        "title": {
+          "en": "Software update is available",
+          "nl": "Software update is beschikbaar"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=server"
+          }
+        ]
+      }
+    ]
+  },
   "capabilities": {
     "active": {
       "type": "boolean",

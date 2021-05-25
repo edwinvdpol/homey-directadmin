@@ -1,0 +1,10 @@
+{
+  "type": "number",
+  "getable": true,
+  "setable": false,
+  "icon": "/assets/email.svg",
+  "title": {
+    "en": "Accounts",
+    "nl": "Accounts"
+  }
+}

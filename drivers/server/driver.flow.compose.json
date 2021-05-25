@@ -1,0 +1,7 @@
+{
+  "triggers": [
+    {
+      "$extends": "update_available_true"
+    }
+  ]
+}

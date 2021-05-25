@@ -1,0 +1,8 @@
+{
+  "type": "label",
+  "label": {
+    "en": "Software version",
+    "nl": "Software versie"
+  },
+  "value": "-"
+}

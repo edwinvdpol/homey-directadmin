@@ -1,0 +1,10 @@
+{
+  "type": "boolean",
+  "getable": true,
+  "setable": false,
+  "icon": "/assets/server_alert.svg",
+  "title": {
+    "en": "Update available",
+    "nl": "Update beschikbaar"
+  }
+}

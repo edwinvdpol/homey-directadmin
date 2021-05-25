@@ -1,0 +1,10 @@
+{
+  "type": "boolean",
+  "getable": true,
+  "setable": false,
+  "icon": "/assets/domain.svg",
+  "title": {
+    "en": "Active",
+    "nl": "Actief"
+  }
+}

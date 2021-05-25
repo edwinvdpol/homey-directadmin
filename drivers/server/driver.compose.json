@@ -1,0 +1,39 @@
+{
+  "id": "server",
+  "name": {
+    "en": "Server"
+  },
+  "class": "other",
+  "capabilities": [
+    "update_available",
+    "server_bandwidth",
+    "databases",
+    "domains",
+    "email_accounts",
+    "email_forwarders",
+    "users",
+    "resellers"
+  ],
+  "pair": [
+    {
+      "id": "start"
+    },
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      },
+      "options": {
+        "singular": true
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ],
+  "$extends": [
+    "defaults"
+  ]
+}

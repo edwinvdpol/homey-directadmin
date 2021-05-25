@@ -1,0 +1,23 @@
+[
+  {
+    "type": "group",
+    "label": {
+      "en": "License information",
+      "nl": "Licentie informatie"
+    },
+    "children": [
+      {
+        "$extends": "ip"
+      },
+      {
+        "$extends": "name"
+      },
+      {
+        "$extends": "os_name"
+      },
+      {
+        "$extends": "version"
+      }
+    ]
+  }
+]

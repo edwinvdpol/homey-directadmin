@@ -1,0 +1,61 @@
+{
+  "id": "com.directadmin",
+  "version": "1.0.1",
+  "compatibility": ">=2.0.0",
+  "sdk": 2,
+  "brandColor": "#1384B2",
+  "name": {
+    "en": "DirectAdmin"
+  },
+  "description": {
+    "en": "DirectAdmin for Homey",
+    "nl": "DirectAdmin voor Homey"
+  },
+  "category": [
+    "internet"
+  ],
+  "tags": {
+    "en": [
+      "directadmin",
+      "monitor",
+      "server",
+      "domain",
+      "online",
+      "manager",
+      "statistics"
+    ],
+    "nl": [
+      "directadmin",
+      "monitor",
+      "server",
+      "domein",
+      "online",
+      "beheer",
+      "statistieken"
+    ]
+  },
+  "images": {
+    "large": "/assets/images/large.png",
+    "small": "/assets/images/small.png"
+  },
+  "permissions": [],
+  "author": {
+    "name": "Edwin van de Pol",
+    "email": "developer@edwinvandepol.nl"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Edwin van de Pol",
+        "email": "developer@edwinvandepol.nl"
+      }
+    ]
+  },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "edwinvdpol"
+      }
+    }
+  }
+}

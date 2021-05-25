@@ -1,0 +1,8 @@
+{
+  "type": "label",
+  "label": {
+    "en": "Bandwidth",
+    "nl": "Bandbreedte"
+  },
+  "value": "-"
+}

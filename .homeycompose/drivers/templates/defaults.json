@@ -1,0 +1,7 @@
+{
+  "images": {
+    "small": "{{driverPath}}/assets/images/small.png",
+    "large": "{{driverPath}}/assets/images/large.png"
+  },
+  "icon": "{{driverPath}}/assets/icon.svg"
+}

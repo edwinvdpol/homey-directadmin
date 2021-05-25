@@ -1,0 +1,10 @@
+{
+  "type": "number",
+  "getable": true,
+  "setable": false,
+  "icon": "/assets/domain.svg",
+  "title": {
+    "en": "Domains",
+    "nl": "Domeinen"
+  }
+}

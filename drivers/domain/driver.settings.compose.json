@@ -1,0 +1,32 @@
+[
+  {
+    "type": "group",
+    "label": {
+      "en": "Domain statistics",
+      "nl": "Domein statistieken"
+    },
+    "children": [
+      {
+        "$extends": "domain_bandwidth"
+      },
+      {
+        "$extends": "domain_quota"
+      }
+    ]
+  },
+  {
+    "type": "group",
+    "label": {
+      "en": "Email statistics",
+      "nl": "E-mail statistieken"
+    },
+    "children": [
+      {
+        "$extends": "email_accounts"
+      },
+      {
+        "$extends": "email_quota"
+      }
+    ]
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "id": "domain",
+  "name": {
+    "en": "Domain",
+    "nl": "Domein"
+  },
+  "class": "other",
+  "capabilities": [
+    "active",
+    "suspended",
+    "bandwidth",
+    "quota",
+    "email_accounts"
+  ],
+  "pair": [
+    {
+      "id": "start"
+    },
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ],
+  "$extends": [
+    "defaults"
+  ]
+}

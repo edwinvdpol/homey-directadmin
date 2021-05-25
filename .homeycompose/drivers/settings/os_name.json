@@ -1,0 +1,8 @@
+{
+  "type": "label",
+  "label": {
+    "en": "Operating system",
+    "nl": "Besturingssysteem"
+  },
+  "value": "-"
+}

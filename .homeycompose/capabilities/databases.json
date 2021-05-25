@@ -1,0 +1,10 @@
+{
+  "type": "number",
+  "getable": true,
+  "setable": false,
+  "icon": "/assets/database.svg",
+  "title": {
+    "en": "Databases",
+    "nl": "Databases"
+  }
+}
