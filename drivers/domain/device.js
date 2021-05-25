@@ -2,7 +2,6 @@
 
 const Homey = require('homey');
 const Device = require('../../lib/Device.js');
-const boolean = require('boolean');
 const pretty = require('prettysize');
 
 const bytesInMb = 1048576;
@@ -45,8 +44,8 @@ class DomainDevice extends Device {
                 if (domain === data.id) {
 
                     found = true;
-                    active = boolean(result[domain].active);
-                    suspended = boolean(result[domain].suspended);
+                    active = !!result[domain].active;
+                    suspended = !!result[domain].suspended;
 
                     let popStats = await this.api.getPopStats(domain);
                     let bandwidthTxt = await this._getBandwidthSetting(result[domain]);
