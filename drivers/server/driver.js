@@ -3,37 +3,34 @@
 const Api = require('/lib/Api');
 const Driver = require('/lib/Driver');
 
-let foundDevices = [];
+const minimalVersion = 1610;
 
 class ServerDriver extends Driver {
 
-  async _onPairSearchDevices(data, callback) {
-    this.log('_onPairSearchDevices');
+  // Pairing
+  onPair(session) {
+    this.log('Pairing started');
 
-    foundDevices = [];
+    session.setHandler('connect', async (data) => {
+      this.log('Connecting to server...');
 
-    const api = new Api(data);
-
-    await api.getLicense()
-      .then(result => {
-        data.id = result.lid + result.uid;
-
-        foundDevices.push({
-          name: 'DA v' + result.version + ' server',
-          data: data
-        });
-      }).catch(error => {
-        callback(error);
+      const result = await new Api(data).license().catch(err => {
+        throw new Error(this.homey.__(err.message));
       });
 
-    callback(null, true);
-  }
+      const version = Number(result.version.replace(/\./g, ''));
 
-  async _onPairListDevices(data, callback) {
-    this.log('_onPairListDevices');
-    this.log(foundDevices);
+      if (version < minimalVersion) {
+        throw new Error(this.homey.__('api.version', {version: result.version}));
+      }
 
-    callback(null, foundDevices);
+      data.id = result.lid;
+
+      await session.emit('create', {
+        name: `DA v${result.version} server`,
+        data: data
+      });
+    });
   }
 
 }

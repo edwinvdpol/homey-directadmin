@@ -1,66 +1,41 @@
 'use strict';
 
-const Homey = require('homey');
 const Device = require('/lib/Device.js');
-
-const refreshDeviceTimeout = 1000 * 60 * 15; // 15 minutes
 
 class ServerDevice extends Device {
 
-  async _initDevice() {
-    this.log('_initDevice');
-
-    // Register flowcard triggers
-    this._registerFlowCardTriggers();
-
-    // Update server data
-    this._syncDevice();
-
-    // Set update timer
-    this.intervalId = setInterval(this._syncDevice.bind(this), refreshDeviceTimeout);
-  }
-
-  async _deleteDevice() {
-    this.log('_deleteDevice');
-
-    clearInterval(this.intervalId);
-  }
-
   // Update server data
-  async _syncDevice() {
+  async syncDevice() {
     try {
-      let license = await this.api.getLicense();
-      let adminStats = await this.api.getAdminStats();
+      const license = await this.api.license();
+      const adminStats = await this.api.adminStats();
 
       // Set capabilities
-      this.setCapabilityValue('server_bandwidth', Number(adminStats.bandwidth / 1024));
-      this.setCapabilityValue('databases', Number(adminStats.mysql));
-      this.setCapabilityValue('domains', Number(adminStats.vdomains));
-      this.setCapabilityValue('email_accounts', Number(adminStats.nemails));
-      this.setCapabilityValue('email_forwarders', Number(adminStats.nemailf));
-      this.setCapabilityValue('users', Number(adminStats.nusers));
-      this.setCapabilityValue('resellers', Number(adminStats.nresellers));
-      this.setCapabilityValue('update_available', !!license.update_available);
+      await this.setCapabilityValue('server_bandwidth', Number(adminStats.bandwidth / 1024));
+      await this.setCapabilityValue('databases', Number(adminStats.mysql));
+      await this.setCapabilityValue('domains', Number(adminStats.vdomains));
+      await this.setCapabilityValue('email_accounts', Number(adminStats.nemails));
+      await this.setCapabilityValue('email_forwarders', Number(adminStats.nemailf));
+      await this.setCapabilityValue('users', Number(adminStats.nusers));
+      await this.setCapabilityValue('resellers', Number(adminStats.nresellers));
+      await this.setCapabilityValue('update_available', !!Number(license.update_available));
 
       // Set settings
-      this.setSettings({
+      await this.setSettings({
         ip: license.ip,
         name: license.name,
         os_name: license.os_name,
         version: license.version
       });
 
-      this.setAvailable();
-    } catch (error) {
-      this.error(error);
-      this.setUnavailable(error.message);
-    }
-  }
+      if (!this.getAvailable()) {
+        await this.setAvailable();
+      }
+    } catch (err) {
+      this.error(err);
 
-  // Register flowcard triggers
-  async _registerFlowCardTriggers() {
-    this.updateAvailableTrigger = new Homey.FlowCardTriggerDevice('update_available_true')
-      .register();
+      await this.setUnavailable(err.message);
+    }
   }
 
 }

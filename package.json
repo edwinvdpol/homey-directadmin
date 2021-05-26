@@ -20,7 +20,7 @@
     "@types/homey": "npm:homey-apps-sdk-v3-types@^0.1.0"
   },
   "dependencies": {
-    "httpreq": "^0.4.24",
-    "prettysize": "^2.0.0"
+    "prettysize": "^2.0.0",
+    "superagent": "^6.1.0"
   }
 }

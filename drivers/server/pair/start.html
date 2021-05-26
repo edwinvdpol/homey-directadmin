@@ -41,10 +41,12 @@
 
 <script type="text/javascript">
   function search() {
-    let error = false;
+    Homey.showLoadingOverlay();
 
+    let error = false;
     let invalids = document.getElementsByClassName('invalid');
-    for (const i = 0; i < invalids.length; i++) {
+
+    for (let i = 0; i < invalids.length; i++) {
       invalids[i].classList.remove('invalid');
     }
 
@@ -88,14 +90,24 @@
       password: pPass.value
     };
 
-    Homey.emit('search_devices', data, (error) => {
+    Homey.emit('connect', data, (error) => {
       pBtn.disabled = false;
 
       if (error) {
+        Homey.hideLoadingOverlay();
         Homey.alert(error.message);
-      } else {
-        Homey.showView('list_devices');
       }
     });
+
+    Homey.on('create', function (data) {
+      Homey.createDevice(data)
+        .then(function () {
+          Homey.done();
+        })
+        .catch(function (err) {
+          Homey.alert(err);
+        });
+    });
+
   }
 </script>

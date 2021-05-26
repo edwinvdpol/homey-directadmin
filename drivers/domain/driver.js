@@ -3,45 +3,44 @@
 const Api = require('/lib/Api');
 const Driver = require('/lib/Driver');
 
-let foundDevices = [];
+
 
 class DomainDriver extends Driver {
 
-  async _onPairSearchDevices(pairData, callback) {
-    this.log('_onPairSearchDevices');
+  // Pairing
+  onPair(session) {
+    this.log('Pairing started');
 
-    foundDevices = [];
+    let foundDevices = [];
 
-    const api = new Api(pairData);
+    session.setHandler('connect', async (data) => {
+      this.log('Connecting to server...');
 
-    await api.getAdditionalDomains()
-      .then(result => {
-        if (Object.keys(result).length) {
-          for (const domain in result) {
-            foundDevices.push({
-              name: domain,
-              data: {
-                id: domain,
-                url: pairData.url,
-                port: pairData.port,
-                username: pairData.username,
-                password: pairData.password
-              }
-            });
-          }
-        }
-      }).catch(error => {
-        callback(error);
+      const result = await new Api(data).additionalDomains().catch(err => {
+        throw new Error(this.homey.__(err.message));
       });
 
-    callback(null, true);
-  }
+      if (Object.keys(result).length === 0) {
+        throw new Error(this.homey.__('error.no_domains_found'));
+      }
 
-  async _onPairListDevices(data, callback) {
-    this.log('_onPairListDevices');
-    this.log(foundDevices);
+      for (const domain in result) {
+        if (!result.hasOwnProperty(domain)) {
+          continue;
+        }
 
-    callback(null, foundDevices);
+        data.id = domain;
+
+        foundDevices.push({
+          name: domain,
+          data: data
+        });
+      }
+    });
+
+    session.setHandler("list_devices", async () => {
+      return foundDevices;
+    });
   }
 
 }
