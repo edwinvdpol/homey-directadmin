@@ -80,6 +80,7 @@
     }
 
     if (error) {
+      Homey.hideLoadingOverlay();
       pBtn.disabled = false;
       return false;
     }
