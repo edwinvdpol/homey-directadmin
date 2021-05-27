@@ -246,8 +246,134 @@
       {
         "id": "update_available_true",
         "title": {
-          "en": "Software update is available",
-          "nl": "Software update is beschikbaar"
+          "en": "Update is available",
+          "nl": "Update is beschikbaar"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=server"
+          }
+        ]
+      },
+      {
+        "id": "server_bandwidth_changed",
+        "title": {
+          "en": "Bandwidth has changed",
+          "nl": "Bandbreedte is veranderd"
+        },
+        "hint": {
+          "en": "This flowcard triggers when the bandwidth has changed.",
+          "nl": "Deze flowcard wordt geactiveerd wanneer de bandbreedte veranderd is."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=server"
+          }
+        ]
+      },
+      {
+        "id": "databases_changed",
+        "title": {
+          "en": "Databases has changed",
+          "nl": "Databases is veranderd"
+        },
+        "hint": {
+          "en": "This flowcard triggers when the number of databases has changed.",
+          "nl": "Deze flowcard wordt geactiveerd wanneer het aantal databases veranderd is."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=server"
+          }
+        ]
+      },
+      {
+        "id": "domains_changed",
+        "title": {
+          "en": "Domains has changed",
+          "nl": "Domeinen is veranderd"
+        },
+        "hint": {
+          "en": "This flowcard triggers when the number of domains has changed.",
+          "nl": "Deze flowcard wordt geactiveerd wanneer het aantal domeinen veranderd is."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=server"
+          }
+        ]
+      },
+      {
+        "id": "email_accounts_changed",
+        "title": {
+          "en": "Email accounts has changed",
+          "nl": "E-mailaccounts is veranderd"
+        },
+        "hint": {
+          "en": "This flowcard triggers when the number of email accounts has changed.",
+          "nl": "Deze flowcard wordt geactiveerd wanneer het aantal e-mailaccounts veranderd is."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=server"
+          }
+        ]
+      },
+      {
+        "id": "email_forwarders_changed",
+        "title": {
+          "en": "Forwarders has changed",
+          "nl": "Doorstuurders is veranderd"
+        },
+        "hint": {
+          "en": "This flowcard triggers when the number of forwarders has changed.",
+          "nl": "Deze flowcard wordt geactiveerd wanneer het aantal doorstuurders veranderd is."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=server"
+          }
+        ]
+      },
+      {
+        "id": "users_changed",
+        "title": {
+          "en": "Users has changed",
+          "nl": "Gebruikers is veranderd"
+        },
+        "hint": {
+          "en": "This flowcard triggers when the number of users has changed.",
+          "nl": "Deze flowcard wordt geactiveerd wanneer het aantal gebruikers veranderd is."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=server"
+          }
+        ]
+      },
+      {
+        "id": "resellers_changed",
+        "title": {
+          "en": "Resellers has changed",
+          "nl": "Resellers is veranderd"
+        },
+        "hint": {
+          "en": "This flowcard triggers when the number of resellers has changed.",
+          "nl": "Deze flowcard wordt geactiveerd wanneer het aantal resellers veranderd is."
         },
         "args": [
           {
@@ -309,8 +435,8 @@
       "setable": false,
       "icon": "/assets/email.svg",
       "title": {
-        "en": "Accounts",
-        "nl": "Accounts"
+        "en": "Email Accounts",
+        "nl": "E-mailaccounts"
       }
     },
     "email_forwarders": {

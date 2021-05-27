@@ -4,7 +4,7 @@
   "setable": false,
   "icon": "/assets/email.svg",
   "title": {
-    "en": "Accounts",
-    "nl": "Accounts"
+    "en": "Email Accounts",
+    "nl": "E-mailaccounts"
   }
 }

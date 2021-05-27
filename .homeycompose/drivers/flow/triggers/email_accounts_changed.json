@@ -1,0 +1,10 @@
+{
+  "title": {
+    "en": "Email accounts has changed",
+    "nl": "E-mailaccounts is veranderd"
+  },
+  "hint": {
+    "en": "This flowcard triggers when the number of email accounts has changed.",
+    "nl": "Deze flowcard wordt geactiveerd wanneer het aantal e-mailaccounts veranderd is."
+  }
+}

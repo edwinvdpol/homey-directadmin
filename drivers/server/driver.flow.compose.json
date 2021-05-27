@@ -2,6 +2,27 @@
   "triggers": [
     {
       "$extends": "update_available_true"
+    },
+    {
+      "$extends": "server_bandwidth_changed"
+    },
+    {
+      "$extends": "databases_changed"
+    },
+    {
+      "$extends": "domains_changed"
+    },
+    {
+      "$extends": "email_accounts_changed"
+    },
+    {
+      "$extends": "email_forwarders_changed"
+    },
+    {
+      "$extends": "users_changed"
+    },
+    {
+      "$extends": "resellers_changed"
     }
   ]
 }
