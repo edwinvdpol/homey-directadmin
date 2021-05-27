@@ -4,6 +4,7 @@
     "error": "Er is een serverfout opgetreden",
     "forbidden": "De toegang is geweigerd",
     "response": "Ongeldige response ontvangen",
+    "timeout": "De server reageerde niet op tijd",
     "unauthorized": "Gebruikersnaam of wachtwoord is ongeldig",
     "version": "Versie __version__ wordt niet ondersteund"
   },

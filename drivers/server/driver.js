@@ -1,8 +1,6 @@
 'use strict';
 
-const Api = require('/lib/Api');
 const Driver = require('/lib/Driver');
-
 const minimalVersion = 1610;
 
 class ServerDriver extends Driver {
@@ -14,10 +12,7 @@ class ServerDriver extends Driver {
     session.setHandler('connect', async (data) => {
       this.log('Connecting to server...');
 
-      const result = await new Api(data).license().catch(err => {
-        throw new Error(this.homey.__(err.message));
-      });
-
+      const result = await this.homey.app.client.license(data);
       const version = Number(result.version.replace(/\./g, ''));
 
       if (version < minimalVersion) {

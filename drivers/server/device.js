@@ -6,9 +6,12 @@ class ServerDevice extends Device {
 
   // Update server data
   async syncDevice() {
+
     try {
-      const license = await this.api.license();
-      const adminStats = await this.api.adminStats();
+      const data = this.getData();
+
+      const license = await this.homey.app.client.license(data);
+      const adminStats = await this.homey.app.client.adminStats(data);
 
       // Set capabilities
       await this.setCapabilityValue('server_bandwidth', Number(adminStats.bandwidth / 1024));
@@ -18,7 +21,7 @@ class ServerDevice extends Device {
       await this.setCapabilityValue('email_forwarders', Number(adminStats.nemailf));
       await this.setCapabilityValue('users', Number(adminStats.nusers));
       await this.setCapabilityValue('resellers', Number(adminStats.nresellers));
-      await this.setCapabilityValue('update_available', !!Number(license.update_available));
+      await this.setCapabilityValue('update_available', license.update_available !== '0');
 
       // Set settings
       await this.setSettings({
@@ -32,8 +35,6 @@ class ServerDevice extends Device {
         await this.setAvailable();
       }
     } catch (err) {
-      this.error(err);
-
       await this.setUnavailable(err.message);
     }
   }

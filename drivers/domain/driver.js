@@ -1,9 +1,6 @@
 'use strict';
 
-const Api = require('/lib/Api');
 const Driver = require('/lib/Driver');
-
-
 
 class DomainDriver extends Driver {
 
@@ -16,9 +13,7 @@ class DomainDriver extends Driver {
     session.setHandler('connect', async (data) => {
       this.log('Connecting to server...');
 
-      const result = await new Api(data).additionalDomains().catch(err => {
-        throw new Error(this.homey.__(err.message));
-      });
+      const result = await this.homey.app.client.additionalDomains(data);
 
       if (Object.keys(result).length === 0) {
         throw new Error(this.homey.__('error.no_domains_found'));
@@ -39,7 +34,7 @@ class DomainDriver extends Driver {
     });
 
     session.setHandler("list_devices", async () => {
-      return foundDevices;
+      return Promise.resolve(foundDevices);
     });
   }
 

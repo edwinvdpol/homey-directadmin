@@ -13,38 +13,34 @@ class DomainDevice extends Device {
       const data = this.getData();
 
       // Get domains data
-      const domains = await this.api.additionalDomains(data.id).catch(err => {
-        this.error(err);
-
-        return this.setUnavailable(this.homey.__(err.message));
-      });
+      const domains = await this.homey.app.client.additionalDomains(data);
 
       // Check if domain is found
       if (Object.keys(domains).length === 0 || ! domains.hasOwnProperty(data.id)) {
-        this.error('Domain not found');
-
         return this.setUnavailable(this.homey.__('error.domain_not_found'));
       }
 
       // Set domain data
       const domain = domains[data.id];
       let active = domain.active === 'yes';
+      let suspended = domain.suspended === 'yes';
 
+      // Domain is deactivated
       if (!active) {
         this.error('Domain is deactivated');
 
         return this.setUnavailable(this.homey.__('error.domain_is_deactivated'));
       }
 
-      let suspended = domain.suspended === 'yes';
+      // Domain is suspended
+      if (suspended) {
+        this.error('Domain is suspended');
+
+        return this.setUnavailable(this.homey.__('error.domain_is_suspended'));
+      }
 
       // Fetch email statistics
-      const emailStats = await this.api.emailStats(data.id).catch(err => {
-        this.error(err);
-
-        return this.setUnavailable(this.homey.__(err.message));
-      });
-
+      const emailStats = await this.homey.app.client.emailStats(data);
 
       const bandwidthTxt = await this.getBandwidthSetting(domain);
       const quotaTxt = await this.getQuotaSetting(domain);
@@ -65,16 +61,10 @@ class DomainDevice extends Device {
         email_quota: emailQuotaTxt
       });
 
-      if (suspended) {
-        return this.setUnavailable(this.homey.__('error.domain_is_suspended'));
-      }
-
       if (!this.getAvailable()) {
         await this.setAvailable();
       }
     } catch (err) {
-      this.error(err.message);
-
       await this.setUnavailable(err.message);
     }
   }
