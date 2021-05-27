@@ -22,35 +22,34 @@ class DomainDevice extends Device {
 
       // Set domain data
       const domain = domains[data.id];
-      let active = domain.active === 'yes';
-      let suspended = domain.suspended === 'yes';
-
-      // Domain is deactivated
-      if (!active) {
-        this.error('Domain is deactivated');
-
-        return this.setUnavailable(this.homey.__('error.domain_is_deactivated'));
-      }
 
       // Domain is suspended
-      if (suspended) {
+      if (domain.suspended === 'yes') {
+        await this.setCapabilityValue('suspended', true);
         this.error('Domain is suspended');
-
         return this.setUnavailable(this.homey.__('error.domain_is_suspended'));
+      } else {
+        await this.setCapabilityValue('suspended', false);
+      }
+
+      // Domain is deactivated
+      if (domain.active === 'no') {
+        await this.setCapabilityValue('active', false);
+        this.error('Domain is deactivated');
+        return this.setUnavailable(this.homey.__('error.domain_is_deactivated'));
+      } else {
+        await this.setCapabilityValue('active', true);
       }
 
       // Fetch email statistics
       const emailStats = await this.homey.app.client.emailStats(data);
-
       const bandwidthTxt = await this.getBandwidthSetting(domain);
       const quotaTxt = await this.getQuotaSetting(domain);
       const emailQuotaTxt = await this.getEmailQuotaSetting(emailStats.usage);
 
       // Set capabilities
-      await this.setCapabilityValue('active', active);
       await this.setCapabilityValue('bandwidth', parseFloat(domain.bandwidth));
       await this.setCapabilityValue('quota', parseFloat(domain.quota));
-      await this.setCapabilityValue('suspended', suspended);
       await this.setCapabilityValue('email_accounts', Number(emailStats.count));
 
       // Set settings
