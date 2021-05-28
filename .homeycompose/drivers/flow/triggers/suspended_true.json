@@ -1,0 +1,10 @@
+{
+  "title": {
+    "en": "Domain just suspended",
+    "nl": "Domein werd geschorst"
+  },
+  "hint": {
+    "en": "This flowcard triggers when the domain was suspended.",
+    "nl": "Deze flowcard wordt geactiveerd wanneer het domein geschorst werd."
+  }
+}

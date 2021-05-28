@@ -1,0 +1,10 @@
+{
+  "title": {
+    "en": "Disk usage has changed",
+    "nl": "Schijfgebruik is veranderd"
+  },
+  "hint": {
+    "en": "This flowcard triggers when the disk usage has changed.",
+    "nl": "Deze flowcard wordt geactiveerd wanneer het schijfgebruik veranderd is."
+  }
+}

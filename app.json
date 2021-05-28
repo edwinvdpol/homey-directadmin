@@ -59,6 +59,276 @@
       }
     }
   },
+  "flow": {
+    "triggers": [
+      {
+        "id": "active_true",
+        "title": {
+          "en": "Domain just activated",
+          "nl": "Domein werd geactiveerd"
+        },
+        "hint": {
+          "en": "This flowcard triggers when the domain was activated.",
+          "nl": "Deze flowcard wordt geactiveerd wanneer het domein geactiveerd werd."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=domain"
+          }
+        ]
+      },
+      {
+        "id": "active_false",
+        "title": {
+          "en": "Domain just deactivated",
+          "nl": "Domein werd gedeactiveerd"
+        },
+        "hint": {
+          "en": "This flowcard triggers when the domain was deactivated.",
+          "nl": "Deze flowcard wordt geactiveerd wanneer het domein gedeactiveerd werd."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=domain"
+          }
+        ]
+      },
+      {
+        "id": "suspended_true",
+        "title": {
+          "en": "Domain just suspended",
+          "nl": "Domein werd geschorst"
+        },
+        "hint": {
+          "en": "This flowcard triggers when the domain was suspended.",
+          "nl": "Deze flowcard wordt geactiveerd wanneer het domein geschorst werd."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=domain"
+          }
+        ]
+      },
+      {
+        "id": "suspended_false",
+        "title": {
+          "en": "Domain suspension just lifted",
+          "nl": "Domeinschorsing werd opgeheven"
+        },
+        "hint": {
+          "en": "This flowcard triggers when the domain suspension just lifted.",
+          "nl": "Deze flowcard wordt geactiveerd wanneer de domeinschorsing werd opgeheven."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=domain"
+          }
+        ]
+      },
+      {
+        "id": "bandwidth_changed",
+        "title": {
+          "en": "Bandwidth has changed",
+          "nl": "Bandbreedte is veranderd"
+        },
+        "hint": {
+          "en": "This flowcard triggers when the bandwidth has changed.",
+          "nl": "Deze flowcard wordt geactiveerd wanneer de bandbreedte veranderd is."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=domain"
+          }
+        ]
+      },
+      {
+        "id": "quota_changed",
+        "title": {
+          "en": "Disk usage has changed",
+          "nl": "Schijfgebruik is veranderd"
+        },
+        "hint": {
+          "en": "This flowcard triggers when the disk usage has changed.",
+          "nl": "Deze flowcard wordt geactiveerd wanneer het schijfgebruik veranderd is."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=domain"
+          }
+        ]
+      },
+      {
+        "id": "email_accounts_changed",
+        "title": {
+          "en": "Email accounts has changed",
+          "nl": "E-mailaccounts is veranderd"
+        },
+        "hint": {
+          "en": "This flowcard triggers when the number of email accounts has changed.",
+          "nl": "Deze flowcard wordt geactiveerd wanneer het aantal e-mailaccounts veranderd is."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=domain"
+          }
+        ]
+      },
+      {
+        "id": "update_available_true",
+        "title": {
+          "en": "Update is available",
+          "nl": "Update is beschikbaar"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=server"
+          }
+        ]
+      },
+      {
+        "id": "server_bandwidth_changed",
+        "title": {
+          "en": "Bandwidth has changed",
+          "nl": "Bandbreedte is veranderd"
+        },
+        "hint": {
+          "en": "This flowcard triggers when the bandwidth has changed.",
+          "nl": "Deze flowcard wordt geactiveerd wanneer de bandbreedte veranderd is."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=server"
+          }
+        ]
+      },
+      {
+        "id": "databases_changed",
+        "title": {
+          "en": "Databases has changed",
+          "nl": "Databases is veranderd"
+        },
+        "hint": {
+          "en": "This flowcard triggers when the number of databases has changed.",
+          "nl": "Deze flowcard wordt geactiveerd wanneer het aantal databases veranderd is."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=server"
+          }
+        ]
+      },
+      {
+        "id": "domains_changed",
+        "title": {
+          "en": "Domains has changed",
+          "nl": "Domeinen is veranderd"
+        },
+        "hint": {
+          "en": "This flowcard triggers when the number of domains has changed.",
+          "nl": "Deze flowcard wordt geactiveerd wanneer het aantal domeinen veranderd is."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=server"
+          }
+        ]
+      },
+      {
+        "id": "email_accounts_changed",
+        "title": {
+          "en": "Email accounts has changed",
+          "nl": "E-mailaccounts is veranderd"
+        },
+        "hint": {
+          "en": "This flowcard triggers when the number of email accounts has changed.",
+          "nl": "Deze flowcard wordt geactiveerd wanneer het aantal e-mailaccounts veranderd is."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=server"
+          }
+        ]
+      },
+      {
+        "id": "email_forwarders_changed",
+        "title": {
+          "en": "Forwarders has changed",
+          "nl": "Doorstuurders is veranderd"
+        },
+        "hint": {
+          "en": "This flowcard triggers when the number of forwarders has changed.",
+          "nl": "Deze flowcard wordt geactiveerd wanneer het aantal doorstuurders veranderd is."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=server"
+          }
+        ]
+      },
+      {
+        "id": "users_changed",
+        "title": {
+          "en": "Users has changed",
+          "nl": "Gebruikers is veranderd"
+        },
+        "hint": {
+          "en": "This flowcard triggers when the number of users has changed.",
+          "nl": "Deze flowcard wordt geactiveerd wanneer het aantal gebruikers veranderd is."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=server"
+          }
+        ]
+      },
+      {
+        "id": "resellers_changed",
+        "title": {
+          "en": "Resellers has changed",
+          "nl": "Resellers is veranderd"
+        },
+        "hint": {
+          "en": "This flowcard triggers when the number of resellers has changed.",
+          "nl": "Deze flowcard wordt geactiveerd wanneer het aantal resellers veranderd is."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=server"
+          }
+        ]
+      }
+    ]
+  },
   "drivers": [
     {
       "images": {
@@ -227,150 +497,6 @@
       ]
     }
   ],
-  "flow": {
-    "triggers": [
-      {
-        "id": "update_available_true",
-        "title": {
-          "en": "Update is available",
-          "nl": "Update is beschikbaar"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=server"
-          }
-        ]
-      },
-      {
-        "id": "server_bandwidth_changed",
-        "title": {
-          "en": "Bandwidth has changed",
-          "nl": "Bandbreedte is veranderd"
-        },
-        "hint": {
-          "en": "This flowcard triggers when the bandwidth has changed.",
-          "nl": "Deze flowcard wordt geactiveerd wanneer de bandbreedte veranderd is."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=server"
-          }
-        ]
-      },
-      {
-        "id": "databases_changed",
-        "title": {
-          "en": "Databases has changed",
-          "nl": "Databases is veranderd"
-        },
-        "hint": {
-          "en": "This flowcard triggers when the number of databases has changed.",
-          "nl": "Deze flowcard wordt geactiveerd wanneer het aantal databases veranderd is."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=server"
-          }
-        ]
-      },
-      {
-        "id": "domains_changed",
-        "title": {
-          "en": "Domains has changed",
-          "nl": "Domeinen is veranderd"
-        },
-        "hint": {
-          "en": "This flowcard triggers when the number of domains has changed.",
-          "nl": "Deze flowcard wordt geactiveerd wanneer het aantal domeinen veranderd is."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=server"
-          }
-        ]
-      },
-      {
-        "id": "email_accounts_changed",
-        "title": {
-          "en": "Email accounts has changed",
-          "nl": "E-mailaccounts is veranderd"
-        },
-        "hint": {
-          "en": "This flowcard triggers when the number of email accounts has changed.",
-          "nl": "Deze flowcard wordt geactiveerd wanneer het aantal e-mailaccounts veranderd is."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=server"
-          }
-        ]
-      },
-      {
-        "id": "email_forwarders_changed",
-        "title": {
-          "en": "Forwarders has changed",
-          "nl": "Doorstuurders is veranderd"
-        },
-        "hint": {
-          "en": "This flowcard triggers when the number of forwarders has changed.",
-          "nl": "Deze flowcard wordt geactiveerd wanneer het aantal doorstuurders veranderd is."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=server"
-          }
-        ]
-      },
-      {
-        "id": "users_changed",
-        "title": {
-          "en": "Users has changed",
-          "nl": "Gebruikers is veranderd"
-        },
-        "hint": {
-          "en": "This flowcard triggers when the number of users has changed.",
-          "nl": "Deze flowcard wordt geactiveerd wanneer het aantal gebruikers veranderd is."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=server"
-          }
-        ]
-      },
-      {
-        "id": "resellers_changed",
-        "title": {
-          "en": "Resellers has changed",
-          "nl": "Resellers is veranderd"
-        },
-        "hint": {
-          "en": "This flowcard triggers when the number of resellers has changed.",
-          "nl": "Deze flowcard wordt geactiveerd wanneer het aantal resellers veranderd is."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=server"
-          }
-        ]
-      }
-    ]
-  },
   "capabilities": {
     "active": {
       "type": "boolean",
@@ -478,7 +604,7 @@
       "icon": "/assets/server_alert.svg",
       "title": {
         "en": "Suspended",
-        "nl": "Opgeschort"
+        "nl": "Geschorst"
       }
     },
     "update_available": {

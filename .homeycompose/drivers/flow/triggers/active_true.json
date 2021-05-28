@@ -1,0 +1,10 @@
+{
+  "title": {
+    "en": "Domain just activated",
+    "nl": "Domein werd geactiveerd"
+  },
+  "hint": {
+    "en": "This flowcard triggers when the domain was activated.",
+    "nl": "Deze flowcard wordt geactiveerd wanneer het domein geactiveerd werd."
+  }
+}

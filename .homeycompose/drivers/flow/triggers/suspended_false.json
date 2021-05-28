@@ -1,0 +1,10 @@
+{
+  "title": {
+    "en": "Domain suspension just lifted",
+    "nl": "Domeinschorsing werd opgeheven"
+  },
+  "hint": {
+    "en": "This flowcard triggers when the domain suspension just lifted.",
+    "nl": "Deze flowcard wordt geactiveerd wanneer de domeinschorsing werd opgeheven."
+  }
+}
