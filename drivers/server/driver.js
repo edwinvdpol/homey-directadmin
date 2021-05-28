@@ -4,7 +4,7 @@ const Driver = require('/lib/Driver');
 
 class ServerDriver extends Driver {
 
-  static MINIMUMVERSION = 1610;
+  static MINIMUMVERSION = 1580;
 
   // Pairing
   onPair(session) {
