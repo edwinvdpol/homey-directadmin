@@ -1,7 +1,7 @@
 'use strict';
 
-const Device = require('/lib/Device.js');
 const pretty = require('prettysize');
+const Device = require('../../lib/Device');
 
 class DomainDevice extends Device {
 
@@ -19,7 +19,7 @@ class DomainDevice extends Device {
       await this.checkDomainIsFound(this._device.id);
 
       // Set domain data
-      this._domain = Object.assign({}, this._domains[this._device.id]);
+      this._domain = { ...this._domains[this._device.id] };
 
       // Check if domain is suspended
       await this.checkDomainIsSuspended();
@@ -44,7 +44,7 @@ class DomainDevice extends Device {
         domain_bandwidth: bandwidthTxt,
         domain_quota: quotaTxt,
         email_accounts: String(this._emailStats.count),
-        email_quota: emailQuotaTxt
+        email_quota: emailQuotaTxt,
       });
 
       if (!this.getAvailable()) {
@@ -59,27 +59,33 @@ class DomainDevice extends Device {
 
   // Domain bandwidth setting text
   async getBandwidthSetting() {
-    if ( ! this._domain) { return; }
+    if (!this._domain) {
+      return;
+    }
 
     let response = this._domain.bandwidth > 0 ? pretty((this._domain.bandwidth * this.constructor.BYTESINMB)) : '0';
 
     if (this._domain.bandwidth_limit !== 'unlimited') {
-      response += ' / ' + pretty((parseFloat(this._domain.bandwidth_limit) * this.constructor.BYTESINMB));
+      response += ` / ${pretty((parseFloat(this._domain.bandwidth_limit) * this.constructor.BYTESINMB))}`;
     }
 
+    // eslint-disable-next-line consistent-return
     return response;
   }
 
   // Disk usage setting text
   async getQuotaSetting() {
-    if ( ! this._domain) { return; }
+    if (!this._domain) {
+      return;
+    }
 
     let response = this._domain.quota > 0 ? pretty((this._domain.quota * this.constructor.BYTESINMB)) : '0';
 
     if (this._domain.quota_limit !== 'unlimited') {
-      response += ' / ' + pretty((parseFloat(this._domain.quota_limit) * this.constructor.BYTESINMB));
+      response += ` / ${pretty((parseFloat(this._domain.quota_limit) * this.constructor.BYTESINMB))}`;
     }
 
+    // eslint-disable-next-line consistent-return
     return response;
   }
 
@@ -90,14 +96,16 @@ class DomainDevice extends Device {
 
   // Check if domain is found
   async checkDomainIsFound(domain) {
-    if (Object.keys(this._domains).length === 0 || ! this._domains.hasOwnProperty(domain)) {
+    if (Object.keys(this._domains).length === 0 || !this._domains[domain]) {
       throw new Error(this.homey.__('error.domain_not_found'));
     }
   }
 
   // Check if domain is active
   async checkDomainIsActive() {
-    if ( ! this._domain) { return; }
+    if (!this._domain) {
+      return;
+    }
 
     if (this._domain.active === 'no') {
       await this.setCapabilityValue('active', false);
@@ -112,7 +120,9 @@ class DomainDevice extends Device {
 
   // Check if domain is suspended
   async checkDomainIsSuspended() {
-    if ( ! this._domain) { return; }
+    if (!this._domain) {
+      return;
+    }
 
     if (this._domain.suspended === 'yes') {
       await this.setCapabilityValue('suspended', true);
@@ -132,6 +142,7 @@ class DomainDevice extends Device {
     this._domains = null;
     this._emailStats = null;
   }
+
 }
 
 module.exports = DomainDevice;

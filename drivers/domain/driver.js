@@ -1,6 +1,6 @@
 'use strict';
 
-const Driver = require('/lib/Driver');
+const Driver = require('../../lib/Driver');
 
 class DomainDriver extends Driver {
 
@@ -10,7 +10,7 @@ class DomainDriver extends Driver {
 
     let foundDevices = [];
 
-    session.setHandler('connect', async (data) => {
+    session.setHandler('connect', async data => {
       this.log('Connecting to server...');
 
       const result = await this.homey.app.client.additionalDomains(data);
@@ -19,21 +19,17 @@ class DomainDriver extends Driver {
         throw new Error(this.homey.__('error.no_domains_found'));
       }
 
-      for (const domain in result) {
-        if (!result.hasOwnProperty(domain)) {
-          continue;
-        }
-
+      Object.keys(result).forEach(domain => {
         data.id = domain;
 
         foundDevices.push({
           name: domain,
-          data: data
+          data,
         });
-      }
+      });
     });
 
-    session.setHandler("list_devices", async () => {
+    session.setHandler('list_devices', async () => {
       return Promise.resolve(foundDevices);
     });
   }

@@ -1,6 +1,6 @@
 'use strict';
 
-const Device = require('/lib/Device.js');
+const Device = require('../../lib/Device');
 
 class ServerDevice extends Device {
 
@@ -26,7 +26,7 @@ class ServerDevice extends Device {
         ip: this._license.ip,
         name: this._license.name,
         os_name: this._license.os_name,
-        version: this._license.version
+        version: this._license.version,
       });
 
       if (!this.getAvailable()) {

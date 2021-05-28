@@ -16,8 +16,13 @@
   "bugs": {
     "url": "https://github.com/edwinvdpol/com.directadmin/issues"
   },
+  "engines": {
+    "node": ">=12.16.1"
+  },
   "devDependencies": {
-    "@types/homey": "npm:homey-apps-sdk-v3-types@^0.1.0"
+    "@types/homey": "npm:homey-apps-sdk-v3-types@^0.1.0",
+    "eslint": "^7.27.0",
+    "eslint-config-athom": "^2.1.0"
   },
   "dependencies": {
     "prettysize": "^2.0.0",
