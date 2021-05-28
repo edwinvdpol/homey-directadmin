@@ -1,12 +1,14 @@
 {
   "api": {
+    "badRequest": "Ongeldig API request",
     "connection": "Kon geen verbinding met server maken",
     "error": "Er is een serverfout opgetreden",
     "forbidden": "De toegang is geweigerd",
     "response": "Ongeldige response ontvangen",
     "timeout": "De server reageerde niet op tijd",
     "unauthorized": "Gebruikersnaam of wachtwoord is ongeldig",
-    "version": "Versie __version__ wordt niet ondersteund"
+    "version": "Versie __version__ wordt niet ondersteund",
+    "unknown": "Er is een onbekende fout opgetreden"
   },
   "login": "Inloggen",
   "password": "Wachtwoord",

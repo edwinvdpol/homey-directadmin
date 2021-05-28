@@ -1,12 +1,14 @@
 {
   "api": {
+    "badRequest": "Invalid API request",
     "connection": "Could not connect to server",
     "error": "A server error occurred",
     "forbidden": "Access has been denied",
     "response": "Invalid response received",
     "timeout": "The server did not respond in time",
     "unauthorized": "Username or password is invalid",
-    "version": "Version __version__ is not supported"
+    "version": "Version __version__ is not supported",
+    "unknown": "An unknown error has occurred"
   },
   "login": "Login",
   "password": "Password",

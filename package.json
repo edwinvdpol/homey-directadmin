@@ -25,7 +25,8 @@
     "eslint-config-athom": "^2.1.0"
   },
   "dependencies": {
-    "prettysize": "^2.0.0",
-    "superagent": "^6.1.0"
+    "abort-controller": "^3.0.0",
+    "node-fetch": "^2.6.1",
+    "prettysize": "^2.0.0"
   }
 }
