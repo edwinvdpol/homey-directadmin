@@ -1,7 +1,7 @@
 'use strict';
 
 const Homey = require('homey');
-const Api = require("./lib/Api");
+const Api = require('./lib/Api');
 
 class App extends Homey.App {
 
@@ -9,7 +9,7 @@ class App extends Homey.App {
     this.log('DirectAdmin App running...');
 
     // Initiate API client
-    if ( ! this.client) {
+    if (!this.client) {
       this.client = new Api(this.homey);
     }
 
