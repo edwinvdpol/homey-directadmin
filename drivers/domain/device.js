@@ -13,7 +13,7 @@ class DomainDevice extends Device {
       this._device = this.getData();
 
       // Get domains data
-      this._domains = await this.homey.app.client.additionalDomains(this._device);
+      this._domains = await this.homey.app.additionalDomains(this._device);
 
       // Check if domain is found
       await this.checkDomainIsFound(this._device.id);
@@ -28,7 +28,7 @@ class DomainDevice extends Device {
       await this.checkDomainIsActive();
 
       // Fetch email statistics
-      this._emailStats = await this.homey.app.client.emailStats(this._device);
+      this._emailStats = await this.homey.app.emailStats(this._device);
 
       const bandwidthTxt = await this.getBandwidthSetting();
       const quotaTxt = await this.getQuotaSetting();

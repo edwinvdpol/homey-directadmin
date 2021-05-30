@@ -14,7 +14,7 @@ class ServerDriver extends Driver {
       this.log('Connecting to server...');
 
       // Get version
-      const result = await this.homey.app.client.license(data);
+      const result = await this.homey.app.license(data);
       const version = Number(result.version.replace(/\./g, ''));
 
       // Check if the version valid

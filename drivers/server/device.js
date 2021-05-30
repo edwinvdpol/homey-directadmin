@@ -10,8 +10,8 @@ class ServerDevice extends Device {
       this._device = this.getData();
 
       // Get server data from API
-      this._license = await this.homey.app.client.license(this._device);
-      this._stats = await this.homey.app.client.adminStats(this._device);
+      this._license = await this.homey.app.license(this._device);
+      this._stats = await this.homey.app.adminStats(this._device);
 
       // Set device capabilities
       await this.setCapabilityValue('server_bandwidth', Number(this._stats.bandwidth / 1024));

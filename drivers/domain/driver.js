@@ -14,7 +14,7 @@ class DomainDriver extends Driver {
       this.log('Connecting to server...');
 
       // Get domain data
-      const result = await this.homey.app.client.additionalDomains(data);
+      const result = await this.homey.app.additionalDomains(data);
 
       if (Object.keys(result).length === 0) {
         throw new Error(this.homey.__('error.no_domains_found'));
