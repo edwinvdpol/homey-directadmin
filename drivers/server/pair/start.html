@@ -14,27 +14,27 @@
     <div class="logo"></div>
 
     <div class="row">
-      <label for="pair-url">URL</label>
-      <input id="pair-url" placeholder="https://www.website.com" type="text" value=""/>
+      <label for="pair-host">URL</label>
+      <input id="pair-host" placeholder="https://directadmin.url" type="text" value=""/>
     </div>
 
     <div class="row">
-      <label for="pair-port" data-i18n="port"></label>
+      <label for="pair-port" data-i18n="port">Port</label>
       <input id="pair-port" type="text" value="2222"/>
     </div>
 
     <div class="row">
-      <label for="pair-user" data-i18n="username"></label>
+      <label for="pair-user" data-i18n="username">Username</label>
       <input id="pair-user" type="text" value=""/>
     </div>
 
     <div class="row">
-      <label for="pair-pass" data-i18n="password"></label>
+      <label for="pair-pass" data-i18n="password">Password</label>
       <input id="pair-pass" type="password" value=""/>
     </div>
 
     <div class="row">
-      <button class="button" id="pair-button" onclick="search();" data-i18n="login"></button>
+      <button class="button" id="pair-button" onclick="search();" data-i18n="login">Login</button>
     </div>
   </div>
 </div>
@@ -51,15 +51,15 @@
     }
 
     const pBtn = document.getElementById('pair-button');
-    const pUrl = document.getElementById('pair-url');
+    const pHost = document.getElementById('pair-host');
     const pPort = document.getElementById('pair-port');
     const pUser = document.getElementById('pair-user');
     const pPass = document.getElementById('pair-pass');
 
     pBtn.disabled = true;
 
-    if (pUrl.value.trim().length === 0) {
-      pUrl.parentNode.classList.add('invalid');
+    if (pHost.value.trim().length === 0) {
+      pHost.parentNode.classList.add('invalid');
       error = true;
     }
 
@@ -85,10 +85,10 @@
     }
 
     let data = {
-      url: pUrl.value,
+      host: pHost.value,
       port: pPort.value,
-      username: pUser.value,
-      password: pPass.value
+      user: pUser.value,
+      pass: pPass.value
     };
 
     Homey.emit('connect', data, (error) => {
