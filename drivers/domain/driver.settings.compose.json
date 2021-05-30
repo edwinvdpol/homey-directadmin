@@ -28,5 +28,35 @@
         "$extends": "email_quota"
       }
     ]
+  },
+  {
+    "type": "group",
+    "label": {
+      "en": "Server settings",
+      "nl": "Server instellingen"
+    },
+    "children": [
+      {
+        "$extends": "host"
+      },
+      {
+        "$extends": "port"
+      }
+    ]
+  },
+  {
+    "type": "group",
+    "label": {
+      "en": "Login credentials",
+      "nl": "Inloggegevens"
+    },
+    "children": [
+      {
+        "$extends": "user"
+      },
+      {
+        "$extends": "pass"
+      }
+    ]
   }
 ]

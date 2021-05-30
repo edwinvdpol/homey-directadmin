@@ -419,6 +419,60 @@
               "value": "-"
             }
           ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Server settings",
+            "nl": "Server instellingen"
+          },
+          "children": [
+            {
+              "id": "host",
+              "type": "text",
+              "label": {
+                "en": "URL"
+              },
+              "value": "-"
+            },
+            {
+              "id": "port",
+              "type": "number",
+              "label": {
+                "en": "Port",
+                "nl": "Poort"
+              },
+              "value": 2222,
+              "min": 1
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Login credentials",
+            "nl": "Inloggegevens"
+          },
+          "children": [
+            {
+              "id": "user",
+              "type": "text",
+              "label": {
+                "en": "Username",
+                "nl": "Gebruikersnaam"
+              },
+              "value": "-"
+            },
+            {
+              "id": "pass",
+              "type": "password",
+              "label": {
+                "en": "Password",
+                "nl": "Wachtwoord"
+              },
+              "value": "-"
+            }
+          ]
         }
       ]
     },
@@ -489,6 +543,60 @@
               "label": {
                 "en": "Software version",
                 "nl": "Software versie"
+              },
+              "value": "-"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Server settings",
+            "nl": "Server instellingen"
+          },
+          "children": [
+            {
+              "id": "host",
+              "type": "text",
+              "label": {
+                "en": "URL"
+              },
+              "value": "-"
+            },
+            {
+              "id": "port",
+              "type": "number",
+              "label": {
+                "en": "Port",
+                "nl": "Poort"
+              },
+              "value": 2222,
+              "min": 1
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Login credentials",
+            "nl": "Inloggegevens"
+          },
+          "children": [
+            {
+              "id": "user",
+              "type": "text",
+              "label": {
+                "en": "Username",
+                "nl": "Gebruikersnaam"
+              },
+              "value": "-"
+            },
+            {
+              "id": "pass",
+              "type": "password",
+              "label": {
+                "en": "Password",
+                "nl": "Wachtwoord"
               },
               "value": "-"
             }

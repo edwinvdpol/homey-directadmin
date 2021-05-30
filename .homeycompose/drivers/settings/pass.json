@@ -1,0 +1,8 @@
+{
+  "type": "password",
+  "label": {
+    "en": "Password",
+    "nl": "Wachtwoord"
+  },
+  "value": "-"
+}
