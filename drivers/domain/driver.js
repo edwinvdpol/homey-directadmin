@@ -13,6 +13,7 @@ class DomainDriver extends Driver {
     session.setHandler('connect', async data => {
       this.log('Connecting to server...');
 
+      // Get domain data
       const result = await this.homey.app.client.additionalDomains(data);
 
       if (Object.keys(result).length === 0) {

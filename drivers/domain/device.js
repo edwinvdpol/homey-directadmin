@@ -34,12 +34,12 @@ class DomainDevice extends Device {
       const quotaTxt = await this.getQuotaSetting();
       const emailQuotaTxt = await this.getEmailQuotaSetting(this._emailStats.usage);
 
-      // Set capabilities
+      // Set device capabilities
       await this.setCapabilityValue('bandwidth', parseFloat(this._domain.bandwidth));
       await this.setCapabilityValue('quota', parseFloat(this._domain.quota));
       await this.setCapabilityValue('email_accounts', Number(this._emailStats.count));
 
-      // Set settings
+      // Set device settings
       await this.setSettings({
         domain_bandwidth: bandwidthTxt,
         domain_quota: quotaTxt,
@@ -135,7 +135,7 @@ class DomainDevice extends Device {
     await this.setCapabilityValue('suspended', false);
   }
 
-  // Reset variables
+  // Reset properties
   reset() {
     this._device = null;
     this._domain = null;

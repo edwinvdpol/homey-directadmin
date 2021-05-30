@@ -8,10 +8,12 @@ class ServerDevice extends Device {
   async syncDevice() {
     try {
       this._device = this.getData();
+
+      // Get server data from API
       this._license = await this.homey.app.client.license(this._device);
       this._stats = await this.homey.app.client.adminStats(this._device);
 
-      // Set capabilities
+      // Set device capabilities
       await this.setCapabilityValue('server_bandwidth', Number(this._stats.bandwidth / 1024));
       await this.setCapabilityValue('databases', Number(this._stats.mysql));
       await this.setCapabilityValue('domains', Number(this._stats.vdomains));
@@ -21,7 +23,7 @@ class ServerDevice extends Device {
       await this.setCapabilityValue('resellers', Number(this._stats.nresellers));
       await this.setCapabilityValue('update_available', this._license.update_available !== '0');
 
-      // Set settings
+      // Set device settings
       await this.setSettings({
         ip: this._license.ip,
         name: this._license.name,
@@ -39,7 +41,7 @@ class ServerDevice extends Device {
     }
   }
 
-  // Reset variables
+  // Reset properties
   reset() {
     this._device = null;
     this._license = null;

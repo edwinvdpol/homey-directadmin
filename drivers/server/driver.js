@@ -13,21 +13,22 @@ class ServerDriver extends Driver {
     session.setHandler('connect', async data => {
       this.log('Connecting to server...');
 
-      let result = await this.homey.app.client.license(data);
+      // Get version
+      const result = await this.homey.app.client.license(data);
       const version = Number(result.version.replace(/\./g, ''));
 
+      // Check if the version valid
       if (version < this.constructor.MINIMUMVERSION) {
         throw new Error(this.homey.__('api.version', { version: result.version }));
       }
 
       data.id = result.lid;
 
+      // Emit create device event
       await session.emit('create', {
         name: `DA v${result.version} server`,
         data,
       });
-
-      result = null;
     });
   }
 
