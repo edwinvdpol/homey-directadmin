@@ -1,45 +1,15 @@
 # DirectAdmin for Homey
 
-Monitor your [DirectAdmin](https://www.directadmin.com) servers and domains.
+DirectAdmin is web hosting control panel software that lets you administer your web site and hosting options using a graphical, web-based interface.
 
-> **Important:** The refresh interval of the data shown for some statistics in the app, depend on how many times a day the [stats tally](https://help.directadmin.com/item.php?id=48) command is executed on the server. By default this is once a day. Please contact your server administrator if you have any questions about this.
+You can manage an unlimited number of websites, email accounts, etc. using a DirectAdmin control panel. DirectAdmin automates tasks so that web servers can be easily shared and give web site owners a way to quickly set-up and manage web sites.
 
-Homey will automatically refresh the data every **15 minutes**.
+This app allows you to get various server- and domain details and statistics.
 
+You also will be able to create flows based these statistics and more.
 
-## Supported server statistics (*admin only*)
-- License information
-- Current DirectAdmin version
-- Number of domains on the server
-- Number of email accounts (POP) on the server
-- Number of email forwarders on the server
-- Number of MySQL databases on the server
-- Number of resellers on the server
-- Number of users on the server
-- Total bandwidth of the server (insights)
-- Software update available
-- Operating system
+Homey will automatically refresh the data every 15 minutes.
 
+**Important**
 
-## Supported domain statistics
-- Domain is active
-- Domain is suspended
-- Domain bandwidth (insights)
-- Domain disk usage (insights)
-- Email accounts
-- Email disk usage
-
-
-## Supported triggers
-- When software update is available
-
-
-## Supported languages
-- English
-- Dutch (Nederlands)
-
-
-## Support / feedback
-If you have any questions or feedback, please contact me on [Slack](https://athomcommunity.slack.com/team/evdpol).
-
-Please report issues and feature requests at the [issues section](https://github.com/edwinvdpol/com.directadmin/issues) on GitHub.
+The refresh interval of the data shown for some statistics in the app, depends on how many times a day the stats tally command is executed on the server. By default this is once a day. Please contact your server administrator if you have any questions about this.
