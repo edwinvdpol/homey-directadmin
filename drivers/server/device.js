@@ -7,28 +7,28 @@ class ServerDevice extends Device {
   // Update server data
   async syncDevice() {
     try {
-      this._device = this.getData();
+      const _settings = this.getSettings();
 
       // Get server data from API
-      this._license = await this.homey.app.license(this._device);
-      this._stats = await this.homey.app.adminStats(this._device);
+      const _license = await this.homey.app.license(_settings);
+      const _stats = await this.homey.app.adminStats(_settings);
 
       // Set device capabilities
-      await this.setCapabilityValue('server_bandwidth', Number(this._stats.bandwidth / 1024));
-      await this.setCapabilityValue('databases', Number(this._stats.mysql));
-      await this.setCapabilityValue('domains', Number(this._stats.vdomains));
-      await this.setCapabilityValue('email_accounts', Number(this._stats.nemails));
-      await this.setCapabilityValue('email_forwarders', Number(this._stats.nemailf));
-      await this.setCapabilityValue('users', Number(this._stats.nusers));
-      await this.setCapabilityValue('resellers', Number(this._stats.nresellers));
-      await this.setCapabilityValue('update_available', this._license.update_available !== '0');
+      await this.setCapabilityValue('server_bandwidth', Number(_stats.bandwidth / 1024));
+      await this.setCapabilityValue('databases', Number(_stats.mysql));
+      await this.setCapabilityValue('domains', Number(_stats.vdomains));
+      await this.setCapabilityValue('email_accounts', Number(_stats.nemails));
+      await this.setCapabilityValue('email_forwarders', Number(_stats.nemailf));
+      await this.setCapabilityValue('users', Number(_stats.nusers));
+      await this.setCapabilityValue('resellers', Number(_stats.nresellers));
+      await this.setCapabilityValue('update_available', _license.update_available !== '0');
 
       // Set device settings
       await this.setSettings({
-        ip: this._license.ip,
-        name: this._license.name,
-        os_name: this._license.os_name,
-        version: this._license.version,
+        ip: _license.ip,
+        name: _license.name,
+        os_name: _license.os_name,
+        version: _license.version,
       });
 
       if (!this.getAvailable()) {
@@ -36,16 +36,7 @@ class ServerDevice extends Device {
       }
     } catch (err) {
       await this.setUnavailable(err.message);
-    } finally {
-      this.reset();
     }
-  }
-
-  // Reset properties
-  reset() {
-    this._device = null;
-    this._license = null;
-    this._stats = null;
   }
 
 }

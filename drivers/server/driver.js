@@ -13,8 +13,16 @@ class ServerDriver extends Driver {
     session.setHandler('connect', async data => {
       this.log('Connecting to server...');
 
+      // Remove trailing slash
+      if (data.host.slice(-1) === '/') {
+        data.host = data.host.slice(0, -1);
+      }
+
+      // Get connection settings
+      const connectSettings = this.getConnectSettings(data);
+
       // Get version
-      const result = await this.homey.app.license(data);
+      const result = await this.homey.app.license(connectSettings);
       const version = Number(result.version.replace(/\./g, ''));
 
       // Check if the version valid
@@ -23,12 +31,15 @@ class ServerDriver extends Driver {
       }
 
       data.id = result.lid;
+      data.name = `DA v${result.version} server`;
+
+      // Get create device data
+      const createData = this.getCreateData(data);
+
+      this.log('createData', createData);
 
       // Emit create device event
-      await session.emit('create', {
-        name: `DA v${result.version} server`,
-        data,
-      });
+      await session.emit('create', createData);
     });
   }
 

@@ -88,8 +88,8 @@
     let data = {
       host: pHost.value,
       port: pPort.value,
-      username: pUser.value,
-      password: pPass.value
+      user: pUser.value,
+      pass: pPass.value
     };
 
     Homey.emit('connect', data, (error) => {

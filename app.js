@@ -28,9 +28,9 @@ class App extends Homey.App {
   }
 
   // Request domain(s)
-  additionalDomains(data) {
-    if (data.id) {
-      return this.client.call('ADDITIONAL_DOMAINS', data, { domain: data.id });
+  additionalDomains(data, domain = null) {
+    if (domain) {
+      return this.client.call('ADDITIONAL_DOMAINS', data, { domain });
     }
 
     return this.client.call('ADDITIONAL_DOMAINS', data);
@@ -42,13 +42,13 @@ class App extends Homey.App {
   }
 
   // Request email statistics
-  async emailStats(data) {
+  async emailStats(data, domain) {
     const result = {
       count: 0,
       usage: 0,
     };
 
-    const response = await this.client.call('POP', data, { domain: data.id, action: 'full_list' });
+    const response = await this.client.call('POP', data, { domain, action: 'full_list' });
 
     if (Object.keys(response).length === 0) {
       return result;

@@ -13,20 +13,30 @@ class DomainDriver extends Driver {
     session.setHandler('connect', async data => {
       this.log('Connecting to server...');
 
-      // Get domain data
-      const result = await this.homey.app.additionalDomains(data);
+      // Remove trailing slash
+      if (data.host.slice(-1) === '/') {
+        data.host = data.host.slice(0, -1);
+      }
 
-      if (Object.keys(result).length === 0) {
+      // Get connection settings
+      const connectSettings = this.getConnectSettings(data);
+
+      // Get domains
+      const _domains = await this.homey.app.additionalDomains(connectSettings);
+
+      // No domains found
+      if (Object.keys(_domains).length === 0) {
         throw new Error(this.homey.__('error.no_domains_found'));
       }
 
-      Object.keys(result).forEach(domain => {
+      Object.keys(_domains).forEach(domain => {
         data.id = domain;
+        data.name = domain;
 
-        foundDevices.push({
-          name: domain,
-          data,
-        });
+        // Get create device data
+        const createData = this.getCreateData(data);
+
+        foundDevices.push(createData);
       });
     });
 
