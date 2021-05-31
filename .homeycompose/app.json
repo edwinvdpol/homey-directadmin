@@ -1,6 +1,6 @@
 {
   "id": "com.directadmin",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#1384B2",
@@ -8,8 +8,8 @@
     "en": "DirectAdmin"
   },
   "description": {
-    "en": "DirectAdmin for Homey",
-    "nl": "DirectAdmin voor Homey"
+    "en": "Monitor DirectAdmin servers and domains",
+    "nl": "Monitor DirectAdmin servers en domeinen"
   },
   "category": [
     "internet"

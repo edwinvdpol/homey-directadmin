@@ -2,5 +2,9 @@
   "1.0.1": {
     "en": "Added support for the new Homey App Store",
     "nl": "Ondersteuning voor nieuwe Homey App Store"
+  },
+  "1.1.0": {
+    "en": "Updated to Homey SDK 3. Added settings to edit server settings and login credentials. Added trigger flow cards. Memory usage is optimized.",
+    "nl": "Geupdate naar Homey SDK 3. Instellingen toegevoegd om serverinstellingen en inloggegevens te bewerken. Trigger flowcards toegevoegd. Geheugengebruik is geoptimaliseerd."
   }
 }
