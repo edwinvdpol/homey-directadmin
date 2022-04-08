@@ -22,21 +22,18 @@ class DomainDriver extends Driver {
       const connectSettings = this.getConnectSettings(data);
 
       // Get domains
-      const _domains = await this.homey.app.additionalDomains(connectSettings);
+      const domains = await this.homey.app.client.call('ADDITIONAL_DOMAINS', connectSettings);
 
       // No domains found
-      if (Object.keys(_domains).length === 0) {
+      if (Object.keys(domains).length === 0) {
         throw new Error(this.homey.__('error.no_domains_found'));
       }
 
-      Object.keys(_domains).forEach(domain => {
+      Object.keys(domains).forEach(domain => {
         data.id = domain;
         data.name = domain;
 
-        // Get create device data
-        const createData = this.getCreateData(data);
-
-        foundDevices.push(createData);
+        foundDevices.push(this.getCreateData(data));
       });
     });
 

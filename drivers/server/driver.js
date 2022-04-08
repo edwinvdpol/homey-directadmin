@@ -22,7 +22,7 @@ class ServerDriver extends Driver {
       const connectSettings = this.getConnectSettings(data);
 
       // Get version
-      const result = await this.homey.app.license(connectSettings);
+      const result = await this.homey.app.client.call('LICENSE', connectSettings);
       const version = Number(result.version.replace(/\./g, ''));
 
       // Check if the version valid
@@ -33,13 +33,8 @@ class ServerDriver extends Driver {
       data.id = result.lid;
       data.name = `DA v${result.version} server`;
 
-      // Get create device data
-      const createData = this.getCreateData(data);
-
-      this.log('createData', createData);
-
       // Emit create device event
-      await session.emit('create', createData);
+      await session.emit('create', this.getCreateData(data));
     });
   }
 
