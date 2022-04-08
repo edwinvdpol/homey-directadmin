@@ -3,5 +3,12 @@
     "small": "{{driverAssetsPath}}/images/small.png",
     "large": "{{driverAssetsPath}}/images/large.png"
   },
-  "icon": "{{driverPath}}/assets/icon.svg"
+  "icon": "{{driverAssetsPath}}/icon.svg",
+  "class": "other",
+  "connectivity": [
+    "lan"
+  ],
+  "platforms": [
+    "local"
+  ]
 }

@@ -1,4 +1,5 @@
 {
+  "id": "users_changed",
   "title": {
     "en": "Users has changed",
     "nl": "Gebruikers is veranderd"
@@ -6,5 +7,15 @@
   "hint": {
     "en": "This flowcard triggers when the number of users has changed.",
     "nl": "Deze flowcard wordt geactiveerd wanneer het aantal gebruikers veranderd is."
-  }
+  },
+  "platforms": [
+    "local"
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=server"
+    }
+  ]
 }

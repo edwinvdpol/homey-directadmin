@@ -1,0 +1,21 @@
+{
+  "id": "update_available_true",
+  "title": {
+    "en": "Update is available",
+    "nl": "Update is beschikbaar"
+  },
+  "hint": {
+    "en": "This flowcard triggers when an update became available.",
+    "nl": "Deze flowcard wordt geactiveerd wanneer er een update beschikbaar kwam."
+  },
+  "platforms": [
+    "local"
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=server"
+    }
+  ]
+}
