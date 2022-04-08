@@ -2,6 +2,9 @@
   "id": "com.directadmin",
   "version": "1.1.0",
   "compatibility": ">=5.0.0",
+  "platforms": [
+    "local"
+  ],
   "sdk": 3,
   "brandColor": "#1384B2",
   "name": {
@@ -57,5 +60,7 @@
         "username": "edwinvdpol"
       }
     }
-  }
+  },
+  "homepage": "https://directadmin.com",
+  "support": "mailto:developer@edwinvandepol.nl"
 }

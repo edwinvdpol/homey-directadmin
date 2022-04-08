@@ -4,6 +4,12 @@
     "en": "Domain",
     "nl": "Domein"
   },
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "lan"
+  ],
   "class": "other",
   "capabilities": [
     "active",

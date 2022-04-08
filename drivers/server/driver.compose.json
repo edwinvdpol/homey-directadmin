@@ -3,6 +3,12 @@
   "name": {
     "en": "Server"
   },
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "lan"
+  ],
   "class": "other",
   "capabilities": [
     "update_available",
