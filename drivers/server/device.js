@@ -7,35 +7,73 @@ class ServerDevice extends Device {
   // Update server data
   async syncDevice() {
     try {
-      const _settings = this.getSettings();
+      const settings = this.getSettings();
 
-      // Get server data from API
-      const _license = await this.homey.app.license(_settings);
-      const _stats = await this.homey.app.adminStats(_settings);
+      // Capability values
+      const stats = await this.homey.app.client.call('ADMIN_STATS', settings);
 
       // Set device capabilities
-      await this.setCapabilityValue('server_bandwidth', Number(_stats.bandwidth / 1024));
-      await this.setCapabilityValue('databases', Number(_stats.mysql));
-      await this.setCapabilityValue('domains', Number(_stats.vdomains));
-      await this.setCapabilityValue('email_accounts', Number(_stats.nemails));
-      await this.setCapabilityValue('email_forwarders', Number(_stats.nemailf));
-      await this.setCapabilityValue('users', Number(_stats.nusers));
-      await this.setCapabilityValue('resellers', Number(_stats.nresellers));
-      await this.setCapabilityValue('update_available', _license.update_available !== '0');
+      if (stats.hasOwnProperty('bandwidth')) {
+        this.setCapabilityValue('server_bandwidth', Number(stats.bandwidth / 1024)).catch(this.error);
+      }
+
+      if (stats.hasOwnProperty('mysql')) {
+        this.setCapabilityValue('databases', Number(stats.mysql)).catch(this.error);
+      }
+
+      if (stats.hasOwnProperty('vdomains')) {
+        this.setCapabilityValue('domains', Number(stats.vdomains)).catch(this.error);
+      }
+
+      if (stats.hasOwnProperty('nemails')) {
+        this.setCapabilityValue('email_accounts', Number(stats.nemails)).catch(this.error);
+      }
+
+      if (stats.hasOwnProperty('nemailf')) {
+        this.setCapabilityValue('email_forwarders', Number(stats.nemailf)).catch(this.error);
+      }
+
+      if (stats.hasOwnProperty('nusers')) {
+        this.setCapabilityValue('users', Number(stats.nusers)).catch(this.error);
+      }
+
+      if (stats.hasOwnProperty('nresellers')) {
+        this.setCapabilityValue('resellers', Number(stats.nresellers)).catch(this.error);
+      }
+
+      // License
+      const license = await this.homey.app.client.call('LICENSE', settings);
+      let newSettings = {};
+
+      if (license.hasOwnProperty('update_available')) {
+        this.setCapabilityValue('update_available', license.update_available !== '0').catch(this.error);
+      }
+
+      if (license.hasOwnProperty('ip')) {
+        newSettings.ip = license.ip === '' ? '-' : license.ip;
+      }
+
+      if (license.hasOwnProperty('name')) {
+        newSettings.name = license.name === '' ? '-' : license.name;
+      }
+
+      if (license.hasOwnProperty('os_name')) {
+        newSettings.os_name = license.os_name === '' ? '-' : license.os_name;
+      }
+
+      if (license.hasOwnProperty('version')) {
+        newSettings.version = license.version === '' ? '-' : license.version;
+      }
 
       // Set device settings
-      await this.setSettings({
-        ip: _license.ip,
-        name: _license.name,
-        os_name: _license.os_name,
-        version: _license.version,
-      });
+      await this.setSettings(newSettings);
 
       if (!this.getAvailable()) {
-        await this.setAvailable();
+        this.setAvailable().catch(this.error);
       }
     } catch (err) {
-      await this.setUnavailable(err.message);
+      this.error(err);
+      this.setUnavailable(err.message).catch(this.error);
     }
   }
 
