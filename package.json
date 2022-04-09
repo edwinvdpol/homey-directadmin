@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "abort-controller": "^3.0.0",
+    "homey-log": "^2.1.0",
     "node-fetch": "^2.6.7",
     "prettysize": "^2.0.0"
   },
