@@ -2,7 +2,7 @@
 
 const pretty = require('prettysize');
 const Device = require('../../lib/Device');
-const qs = require("querystring");
+const qs = require('querystring');
 
 class DomainDevice extends Device {
 
@@ -16,7 +16,14 @@ class DomainDevice extends Device {
 
       // Get and set domain data
       const domains = await this.homey.app.client.call('ADDITIONAL_DOMAINS', settings, { name });
+
+      // Check if domain exists
+      if (!domains.hasOwnProperty(name)) {
+        return this.setUnavailable(this.homey.__('error.domain_not_found'));
+      }
+
       const data = domains[name];
+      let newSettings = {};
 
       // Check if domain is suspended
       if (data.hasOwnProperty('suspended')) {
@@ -31,10 +38,18 @@ class DomainDevice extends Device {
       // Set device capabilities
       if (data.hasOwnProperty('bandwidth')) {
         this.setCapabilityValue('bandwidth', parseFloat(data.bandwidth)).catch(this.error);
+
+        if (data.hasOwnProperty('bandwidth_limit')) {
+          newSettings.domain_bandwidth = await this.getBandwidthSetting(data.bandwidth, data.bandwidth_limit);
+        }
       }
 
       if (data.hasOwnProperty('quota')) {
         this.setCapabilityValue('quota', parseFloat(data.quota)).catch(this.error);
+
+        if (data.hasOwnProperty('quota_limit')) {
+          newSettings.domain_quota = await this.getQuotaSetting(data.quota, data.quota_limit);
+        }
       }
 
       // Fetch email statistics
@@ -42,15 +57,16 @@ class DomainDevice extends Device {
 
       if (emailStats.hasOwnProperty('count')) {
         this.setCapabilityValue('email_accounts', Number(emailStats.count)).catch(this.error);
+
+        newSettings.email_accounts = String(emailStats.count);
+      }
+
+      if (emailStats.hasOwnProperty('usage')) {
+        newSettings.email_quota = await this.getEmailQuotaSetting(emailStats.usage);
       }
 
       // Set device settings
-      await this.setSettings({
-        domain_bandwidth: await this.getBandwidthSetting(data.bandwidth, data.bandwidth_limit),
-        domain_quota: await this.getQuotaSetting(data.quota, data.quota_limit),
-        email_accounts: String(emailStats.count),
-        email_quota: await this.getEmailQuotaSetting(emailStats.usage),
-      });
+      await this.setSettings(newSettings);
 
       if (!this.getAvailable()) {
         this.setAvailable().catch(this.error);
