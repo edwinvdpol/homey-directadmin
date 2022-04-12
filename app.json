@@ -7,7 +7,7 @@
     "local"
   ],
   "sdk": 3,
-  "brandColor": "#1384B2",
+  "brandColor": "#003954",
   "name": {
     "en": "DirectAdmin"
   },
@@ -39,8 +39,9 @@
     ]
   },
   "images": {
+    "small": "/assets/images/small.png",
     "large": "/assets/images/large.png",
-    "small": "/assets/images/small.png"
+    "xlarge": "/assets/images/xlarge.png"
   },
   "permissions": [],
   "author": {
