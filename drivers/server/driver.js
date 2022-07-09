@@ -32,7 +32,7 @@ class ServerDriver extends Driver {
       data.name = `DA v${result.version} server`;
 
       // Emit create device event
-      await session.emit('create', this.getCreateData(data));
+      await session.emit('create', this.getDeviceData(data));
     });
   }
 

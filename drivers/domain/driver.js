@@ -33,7 +33,7 @@ class DomainDriver extends Driver {
         data.id = domain;
         data.name = domain;
 
-        foundDevices.push(this.getCreateData(data));
+        foundDevices.push(this.getDeviceData(data));
       });
     });
 
