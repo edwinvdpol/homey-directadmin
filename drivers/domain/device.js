@@ -8,134 +8,99 @@ class DomainDevice extends Device {
 
   static BYTESINMB = 1048576;
 
-  // Update domain data
-  async syncDevice() {
-    try {
-      const name = this.getData().id;
-      const settings = this.getSettings();
+  /*
+  | Capabilities
+  */
 
-      // Get and set domain data
-      const domains = await this.homey.app.client.call('ADDITIONAL_DOMAINS', settings, { name });
-
-      // Check if domain exists
-      if (!domains.hasOwnProperty(name)) {
-        return this.setUnavailable(this.homey.__('error.domain_not_found'));
+  // Set device data
+  handleSyncData(data) {
+    Promise.resolve().then(async () => {
+      // Set domain data
+      if (data.hasOwnProperty('domain')) {
+        await this.handleDomainData(data.domain);
       }
 
-      const data = domains[name];
-      let newSettings = {};
-
-      // Check if domain is suspended
-      if (data.hasOwnProperty('suspended')) {
-        await this.checkDomainIsSuspended(data.suspended);
+      // Set email data
+      if (data.hasOwnProperty('email')) {
+        await this.handleEmailData(data.email);
       }
 
-      // Check if domain is active
-      if (data.hasOwnProperty('active')) {
-        await this.checkDomainIsActive(data.active);
-      }
-
-      // Set device capabilities
-      if (data.hasOwnProperty('bandwidth')) {
-        this.setCapabilityValue('bandwidth', parseFloat(data.bandwidth)).catch(this.error);
-
-        if (data.hasOwnProperty('bandwidth_limit')) {
-          newSettings.domain_bandwidth = await this.getBandwidthSetting(data.bandwidth, data.bandwidth_limit);
-        }
-      }
-
-      if (data.hasOwnProperty('quota')) {
-        this.setCapabilityValue('quota', parseFloat(data.quota)).catch(this.error);
-
-        if (data.hasOwnProperty('quota_limit')) {
-          newSettings.domain_quota = await this.getQuotaSetting(data.quota, data.quota_limit);
-        }
-      }
-
-      // Fetch email statistics
-      const emailStats = await this.emailStats(settings, name);
-
-      if (emailStats.hasOwnProperty('count')) {
-        this.setCapabilityValue('email_accounts', Number(emailStats.count)).catch(this.error);
-
-        newSettings.email_accounts = String(emailStats.count);
-      }
-
-      if (emailStats.hasOwnProperty('usage')) {
-        newSettings.email_quota = await this.getEmailQuotaSetting(emailStats.usage);
-      }
-
-      // Set device settings
-      await this.setSettings(newSettings);
-
-      if (!this.getAvailable()) {
-        this.setAvailable().catch(this.error);
-      }
-    } catch (err) {
-      this.error(err);
+      this.setAvailable().catch(this.error);
+    }).catch(err => {
       this.setUnavailable(err.message).catch(this.error);
-    }
+    });
   }
 
-  // Domain bandwidth setting text
-  async getBandwidthSetting(bandwidth, limit) {
-    let response = bandwidth > 0 ? pretty((bandwidth * this.constructor.BYTESINMB)) : '0';
-
-    if (limit !== 'unlimited') {
-      response += ` / ${pretty((parseFloat(limit) * this.constructor.BYTESINMB))}`;
+  // Set email data
+  async handleEmailData(data) {
+    if (Object.keys(data).length === 0) {
+      return;
     }
 
-    // eslint-disable-next-line consistent-return
-    return response;
-  }
+    let emailCount = 0;
+    let emailUsage = 0;
 
-  // Request email statistics
-  async emailStats() {
-    const result = {
-      count: 0,
-      usage: 0,
-    };
+    Object.keys(data).forEach(user => {
+      const inbox = qs.parse(data[user]);
 
-    const domain = this.getData().id;
-
-    const response = await this.homey.app.client.call('POP', this.getSettings(), { domain, action: 'full_list' });
-
-    if (Object.keys(response).length === 0) {
-      return result;
-    }
-
-    Object.keys(response).forEach(user => {
-      const inbox = qs.parse(response[user]);
-
-      result.count++;
-      result.usage += parseFloat(inbox.usage);
+      emailCount++;
+      emailUsage += parseFloat(inbox.usage);
     });
 
-    return result;
+    this.setCapabilityValue('email_accounts', Number(emailCount)).catch(this.error);
+
+    const newSettings = {
+      email_accounts: String(emailCount),
+      email_quota: this.getEmailQuota(emailUsage)
+    };
+
+    // Set device settings
+    this.setSettings(newSettings).catch(this.error);
   }
 
-  // Disk usage setting text
-  async getQuotaSetting(quota, limit) {
-    let response = quota > 0 ? pretty((quota * this.constructor.BYTESINMB)) : '0';
-
-    if (limit !== 'unlimited') {
-      response += ` / ${pretty((parseFloat(limit) * this.constructor.BYTESINMB))}`;
+  // Set domain data
+  async handleDomainData(data) {
+    // Check if domain is suspended
+    if (data.hasOwnProperty('suspended')) {
+      await this.checkDomainIsSuspended(data.suspended);
     }
 
-    return response;
+    // Check if domain is active
+    if (data.hasOwnProperty('active')) {
+      await this.checkDomainIsActive(data.active);
+    }
+
+    let newSettings = {};
+
+    // Set device capabilities
+    if (data.hasOwnProperty('bandwidth')) {
+      this.setCapabilityValue('bandwidth', parseFloat(data.bandwidth)).catch(this.error);
+
+      if (data.hasOwnProperty('bandwidth_limit')) {
+        newSettings.domain_bandwidth = this.getBandwidth(data.bandwidth, data.bandwidth_limit);
+      }
+    }
+
+    if (data.hasOwnProperty('quota')) {
+      this.setCapabilityValue('quota', parseFloat(data.quota)).catch(this.error);
+
+      if (data.hasOwnProperty('quota_limit')) {
+        newSettings.domain_quota = this.getQuota(data.quota, data.quota_limit);
+      }
+    }
+
+    // Set device settings
+    this.setSettings(newSettings).catch(this.error);
   }
 
-  // Email disk usage setting text
-  async getEmailQuotaSetting(quota) {
-    return quota > 0 ? pretty((quota * this.constructor.BYTESINMB)) : '0';
-  }
+  /*
+  | Validate functions
+  */
 
   // Check if domain is active
   async checkDomainIsActive(active) {
     if (active === 'no') {
       this.setCapabilityValue('active', false).catch(this.error);
-
-      this.error('Domain is deactivated');
 
       throw new Error(this.homey.__('error.domain_is_deactivated'));
     }
@@ -148,12 +113,41 @@ class DomainDevice extends Device {
     if (suspended === 'yes') {
       this.setCapabilityValue('suspended', true).catch(this.error);
 
-      this.error('Domain is suspended');
-
       throw new Error(this.homey.__('error.domain_is_suspended'));
     }
 
     this.setCapabilityValue('suspended', false).catch(this.error);
+  }
+
+  /*
+  | Support functions
+  */
+
+  // Domain bandwidth text
+  getBandwidth(bandwidth, limit) {
+    let response = bandwidth > 0 ? pretty((bandwidth * this.constructor.BYTESINMB)) : '0';
+
+    if (limit !== 'unlimited') {
+      response += ` / ${pretty((parseFloat(limit) * this.constructor.BYTESINMB))}`;
+    }
+
+    return response;
+  }
+
+  // Email disk usage text
+  getEmailQuota(quota) {
+    return quota > 0 ? pretty((quota * this.constructor.BYTESINMB)) : '0';
+  }
+
+  // Disk usage text
+  getQuota(quota, limit) {
+    let response = quota > 0 ? pretty((quota * this.constructor.BYTESINMB)) : '0';
+
+    if (limit !== 'unlimited') {
+      response += ` / ${pretty((parseFloat(limit) * this.constructor.BYTESINMB))}`;
+    }
+
+    return response;
   }
 
 }

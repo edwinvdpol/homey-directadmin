@@ -10,8 +10,8 @@ class DomainDriver extends Driver {
 
     let foundDevices = [];
 
-    session.setHandler('connect', async data => {
-      this.log('Connecting to server...');
+    session.setHandler('connect', async (data) => {
+      this.log('Connecting to server');
 
       // Remove trailing slash
       if (data.host.slice(-1) === '/') {
@@ -19,10 +19,10 @@ class DomainDriver extends Driver {
       }
 
       // Get connection settings
-      const connectSettings = this.getConnectSettings(data);
+      const settings = this.getConnectSettings(data);
 
       // Get domains
-      const domains = await this.homey.app.client.call('ADDITIONAL_DOMAINS', connectSettings);
+      const domains = await this.call('ADDITIONAL_DOMAINS', settings);
 
       // No domains found
       if (Object.keys(domains).length === 0) {

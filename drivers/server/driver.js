@@ -4,14 +4,12 @@ const Driver = require('../../lib/Driver');
 
 class ServerDriver extends Driver {
 
-  static MINIMUMVERSION = 1580;
-
   // Pairing
   onPair(session) {
     this.log('Pairing started');
 
-    session.setHandler('connect', async data => {
-      this.log('Connecting to server...');
+    session.setHandler('connect', async (data) => {
+      this.log('Connecting to server');
 
       // Remove trailing slash
       if (data.host.slice(-1) === '/') {
@@ -19,15 +17,15 @@ class ServerDriver extends Driver {
       }
 
       // Get connection settings
-      const connectSettings = this.getConnectSettings(data);
+      const settings = this.getConnectSettings(data);
 
       // Get version
-      const result = await this.homey.app.client.call('LICENSE', connectSettings);
+      const result = await this.call('LICENSE', settings);
       const version = Number(result.version.replace(/\./g, ''));
 
       // Check if the version valid
-      if (version < this.constructor.MINIMUMVERSION) {
-        throw new Error(this.homey.__('api.version', { version: result.version }));
+      if (version < 1580) {
+        throw new Error(this.homey.__('api.version', {version: result.version}));
       }
 
       data.id = result.lid;
