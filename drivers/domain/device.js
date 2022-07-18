@@ -15,6 +15,8 @@ class DomainDevice extends Device {
 
   // Set device data
   handleSyncData(data) {
+    this.log('Update device', this.getData().id, JSON.stringify(data));
+
     Promise.resolve().then(async () => {
       // Set domain data
       if (filled(data.domain)) {

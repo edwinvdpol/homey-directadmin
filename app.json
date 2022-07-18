@@ -68,7 +68,6 @@
   "flow": {
     "triggers": [
       {
-        "id": "active_false",
         "title": {
           "en": "Domain just deactivated",
           "nl": "Domein werd gedeactiveerd"
@@ -86,10 +85,10 @@
             "name": "device",
             "filter": "driver_id=domain"
           }
-        ]
+        ],
+        "id": "active_false"
       },
       {
-        "id": "active_true",
         "title": {
           "en": "Domain just activated",
           "nl": "Domein werd geactiveerd"
@@ -107,10 +106,10 @@
             "name": "device",
             "filter": "driver_id=domain"
           }
-        ]
+        ],
+        "id": "active_true"
       },
       {
-        "id": "bandwidth_changed",
         "title": {
           "en": "Bandwidth has changed",
           "nl": "Bandbreedte is veranderd"
@@ -128,10 +127,10 @@
             "name": "device",
             "filter": "driver_id=domain"
           }
-        ]
+        ],
+        "id": "bandwidth_changed"
       },
       {
-        "id": "databases_changed",
         "title": {
           "en": "Databases has changed",
           "nl": "Databases is veranderd"
@@ -149,10 +148,10 @@
             "name": "device",
             "filter": "driver_id=server"
           }
-        ]
+        ],
+        "id": "databases_changed"
       },
       {
-        "id": "domains_changed",
         "title": {
           "en": "Domains has changed",
           "nl": "Domeinen is veranderd"
@@ -170,10 +169,10 @@
             "name": "device",
             "filter": "driver_id=server"
           }
-        ]
+        ],
+        "id": "domains_changed"
       },
       {
-        "id": "email_accounts_changed",
         "title": {
           "en": "Email accounts has changed",
           "nl": "E-mailaccounts is veranderd"
@@ -191,10 +190,10 @@
             "name": "device",
             "filter": "driver_id=domain|server"
           }
-        ]
+        ],
+        "id": "email_accounts_changed"
       },
       {
-        "id": "email_forwarders_changed",
         "title": {
           "en": "Forwarders has changed",
           "nl": "Doorstuurders is veranderd"
@@ -212,10 +211,10 @@
             "name": "device",
             "filter": "driver_id=server"
           }
-        ]
+        ],
+        "id": "email_forwarders_changed"
       },
       {
-        "id": "quota_changed",
         "title": {
           "en": "Disk usage has changed",
           "nl": "Schijfgebruik is veranderd"
@@ -233,10 +232,10 @@
             "name": "device",
             "filter": "driver_id=domain"
           }
-        ]
+        ],
+        "id": "quota_changed"
       },
       {
-        "id": "resellers_changed",
         "title": {
           "en": "Resellers has changed",
           "nl": "Resellers is veranderd"
@@ -254,10 +253,10 @@
             "name": "device",
             "filter": "driver_id=server"
           }
-        ]
+        ],
+        "id": "resellers_changed"
       },
       {
-        "id": "server_bandwidth_changed",
         "title": {
           "en": "Bandwidth has changed",
           "nl": "Bandbreedte is veranderd"
@@ -275,10 +274,10 @@
             "name": "device",
             "filter": "driver_id=server"
           }
-        ]
+        ],
+        "id": "server_bandwidth_changed"
       },
       {
-        "id": "suspended_false",
         "title": {
           "en": "Domain suspension just lifted",
           "nl": "Domeinschorsing werd opgeheven"
@@ -296,10 +295,10 @@
             "name": "device",
             "filter": "driver_id=domain"
           }
-        ]
+        ],
+        "id": "suspended_false"
       },
       {
-        "id": "suspended_true",
         "title": {
           "en": "Domain just suspended",
           "nl": "Domein werd geschorst"
@@ -317,10 +316,10 @@
             "name": "device",
             "filter": "driver_id=domain"
           }
-        ]
+        ],
+        "id": "suspended_true"
       },
       {
-        "id": "update_available_true",
         "title": {
           "en": "Update is available",
           "nl": "Update is beschikbaar"
@@ -338,10 +337,10 @@
             "name": "device",
             "filter": "driver_id=server"
           }
-        ]
+        ],
+        "id": "update_available_true"
       },
       {
-        "id": "users_changed",
         "title": {
           "en": "Users has changed",
           "nl": "Gebruikers is veranderd"
@@ -359,7 +358,8 @@
             "name": "device",
             "filter": "driver_id=server"
           }
-        ]
+        ],
+        "id": "users_changed"
       }
     ]
   },

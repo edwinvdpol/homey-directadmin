@@ -7,6 +7,8 @@ class ServerDevice extends Device {
 
   // Set device data
   handleSyncData(data) {
+    this.log('Update device', this.getData().id, JSON.stringify(data));
+
     // Set license data
     if (filled(data.license)) {
       this.handleLicenseData(data.license);
@@ -49,7 +51,7 @@ class ServerDevice extends Device {
       this.setCapabilityValue('domains', Number(stats.vdomains)).catch(this.error);
     }
 
-    if (filled(statsnemails)) {
+    if (filled(stats.nemails)) {
       this.setCapabilityValue('email_accounts', Number(stats.nemails)).catch(this.error);
     }
 
