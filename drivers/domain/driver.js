@@ -1,6 +1,7 @@
 'use strict';
 
 const Driver = require('../../lib/Driver');
+const {blank} = require('../../lib/Utils');
 
 class DomainDriver extends Driver {
 
@@ -25,7 +26,7 @@ class DomainDriver extends Driver {
       const domains = await this.call('ADDITIONAL_DOMAINS', settings);
 
       // No domains found
-      if (Object.keys(domains).length === 0) {
+      if (blank(domains)) {
         throw new Error(this.homey.__('error.no_domains_found'));
       }
 

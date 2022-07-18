@@ -2,6 +2,7 @@
 
 const pretty = require('prettysize');
 const Device = require('../../lib/Device');
+const {filled} = require('../../lib/Utils');
 const qs = require('querystring');
 
 class DomainDevice extends Device {
@@ -16,12 +17,12 @@ class DomainDevice extends Device {
   handleSyncData(data) {
     Promise.resolve().then(async () => {
       // Set domain data
-      if (data.hasOwnProperty('domain')) {
+      if (filled(data.domain)) {
         await this.handleDomainData(data.domain);
       }
 
       // Set email data
-      if (data.hasOwnProperty('email')) {
+      if (filled(data.email)) {
         await this.handleEmailData(data.email);
       }
 
@@ -31,12 +32,45 @@ class DomainDevice extends Device {
     });
   }
 
-  // Set email data
-  async handleEmailData(data) {
-    if (Object.keys(data).length === 0) {
-      return;
+  // Set domain data
+  async handleDomainData(data) {
+    // Check if domain is suspended
+    if (filled(data.suspended)) {
+      await this.checkDomainIsSuspended(data.suspended);
     }
 
+    // Check if domain is active
+    if (filled(data.active)) {
+      await this.checkDomainIsActive(data.active);
+    }
+
+    let newSettings = {};
+
+    // Set device capabilities
+    if (filled(data.bandwidth)) {
+      this.setCapabilityValue('bandwidth', parseFloat(data.bandwidth)).catch(this.error);
+
+      if (filled(data.bandwidth_limit)) {
+        newSettings.domain_bandwidth = this.getBandwidth(data.bandwidth, data.bandwidth_limit);
+      }
+    }
+
+    if (filled(data.quota)) {
+      this.setCapabilityValue('quota', parseFloat(data.quota)).catch(this.error);
+
+      if (filled(data.quota_limit)) {
+        newSettings.domain_quota = this.getQuota(data.quota, data.quota_limit);
+      }
+    }
+
+    // Set device settings
+    if (filled(newSettings)) {
+      this.setSettings(newSettings).catch(this.error);
+    }
+  }
+
+  // Set email data
+  async handleEmailData(data) {
     let emailCount = 0;
     let emailUsage = 0;
 
@@ -49,48 +83,11 @@ class DomainDevice extends Device {
 
     this.setCapabilityValue('email_accounts', Number(emailCount)).catch(this.error);
 
-    const newSettings = {
+    // Set device settings
+    this.setSettings({
       email_accounts: String(emailCount),
       email_quota: this.getEmailQuota(emailUsage)
-    };
-
-    // Set device settings
-    this.setSettings(newSettings).catch(this.error);
-  }
-
-  // Set domain data
-  async handleDomainData(data) {
-    // Check if domain is suspended
-    if (data.hasOwnProperty('suspended')) {
-      await this.checkDomainIsSuspended(data.suspended);
-    }
-
-    // Check if domain is active
-    if (data.hasOwnProperty('active')) {
-      await this.checkDomainIsActive(data.active);
-    }
-
-    let newSettings = {};
-
-    // Set device capabilities
-    if (data.hasOwnProperty('bandwidth')) {
-      this.setCapabilityValue('bandwidth', parseFloat(data.bandwidth)).catch(this.error);
-
-      if (data.hasOwnProperty('bandwidth_limit')) {
-        newSettings.domain_bandwidth = this.getBandwidth(data.bandwidth, data.bandwidth_limit);
-      }
-    }
-
-    if (data.hasOwnProperty('quota')) {
-      this.setCapabilityValue('quota', parseFloat(data.quota)).catch(this.error);
-
-      if (data.hasOwnProperty('quota_limit')) {
-        newSettings.domain_quota = this.getQuota(data.quota, data.quota_limit);
-      }
-    }
-
-    // Set device settings
-    this.setSettings(newSettings).catch(this.error);
+    }).catch(this.error);
   }
 
   /*
