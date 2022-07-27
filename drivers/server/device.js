@@ -6,8 +6,8 @@ const {filled} = require('../../lib/Utils');
 class ServerDevice extends Device {
 
   // Set device data
-  handleSyncData(data) {
-    this.log('Update device', this.getData().id, JSON.stringify(data));
+  async handleSyncData(data) {
+    this.log('Update device', JSON.stringify(data));
 
     // Set license data
     if (filled(data.license)) {

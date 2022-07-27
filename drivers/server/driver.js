@@ -1,6 +1,7 @@
 'use strict';
 
 const Driver = require('../../lib/Driver');
+const Client = require('../../lib/Client');
 
 class ServerDriver extends Driver {
 
@@ -11,28 +12,32 @@ class ServerDriver extends Driver {
     session.setHandler('connect', async (data) => {
       this.log('Connecting to server');
 
-      // Remove trailing slash
-      if (data.host.slice(-1) === '/') {
-        data.host = data.host.slice(0, -1);
+      try {
+        // Get connection settings
+        const settings = this.getConnectSettings(data);
+
+        // Setup client
+        const client = new Client(settings);
+
+        // Get license
+        const result = await client.call('LICENSE');
+
+        // Get version
+        const version = Number(result.version.replace(/\./g, ''));
+
+        // Check if the version valid
+        if (version < 1580) {
+          throw new Error(this.homey.__('api.version', {version: result.version}));
+        }
+
+        data.id = result.lid;
+        data.name = `DA v${result.version} server`;
+
+        // Emit create device event
+        await session.emit('create', this.getDeviceData(data));
+      } catch (err) {
+        throw new Error(this.homey.__(err.message));
       }
-
-      // Get connection settings
-      const settings = this.getConnectSettings(data);
-
-      // Get version
-      const result = await this.call('LICENSE', settings);
-      const version = Number(result.version.replace(/\./g, ''));
-
-      // Check if the version valid
-      if (version < 1580) {
-        throw new Error(this.homey.__('api.version', {version: result.version}));
-      }
-
-      data.id = result.lid;
-      data.name = `DA v${result.version} server`;
-
-      // Emit create device event
-      await session.emit('create', this.getDeviceData(data));
     });
   }
 

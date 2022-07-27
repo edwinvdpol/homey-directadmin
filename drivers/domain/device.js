@@ -14,24 +14,20 @@ class DomainDevice extends Device {
   */
 
   // Set device data
-  handleSyncData(data) {
-    this.log('Update device', this.getData().id, JSON.stringify(data));
+  async handleSyncData(data) {
+    this.log('Update device', JSON.stringify(data));
 
-    Promise.resolve().then(async () => {
-      // Set domain data
-      if (filled(data.domain)) {
-        await this.handleDomainData(data.domain);
-      }
+    // Set domain data
+    if (filled(data.domain)) {
+      await this.handleDomainData(data.domain);
+    }
 
-      // Set email data
-      if (filled(data.email)) {
-        await this.handleEmailData(data.email);
-      }
+    // Set email data
+    if (filled(data.email)) {
+      await this.handleEmailData(data.email);
+    }
 
-      this.setAvailable().catch(this.error);
-    }).catch(err => {
-      this.setUnavailable(err.message).catch(this.error);
-    });
+    this.setAvailable().catch(this.error);
   }
 
   // Set domain data

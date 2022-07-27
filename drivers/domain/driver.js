@@ -2,6 +2,7 @@
 
 const Driver = require('../../lib/Driver');
 const {blank} = require('../../lib/Utils');
+const Client = require('../../lib/Client');
 
 class DomainDriver extends Driver {
 
@@ -19,23 +20,30 @@ class DomainDriver extends Driver {
         data.host = data.host.slice(0, -1);
       }
 
-      // Get connection settings
-      const settings = this.getConnectSettings(data);
+      try {
+        // Get connection settings
+        const settings = this.getConnectSettings(data);
 
-      // Get domains
-      const domains = await this.call('ADDITIONAL_DOMAINS', settings);
+        // Setup client
+        const client = new Client(settings);
 
-      // No domains found
-      if (blank(domains)) {
-        throw new Error(this.homey.__('error.no_domains_found'));
+        // Get domains
+        const domains = await client.call('ADDITIONAL_DOMAINS');
+
+        // No domains found
+        if (blank(domains)) {
+          throw new Error('error.no_domains_found');
+        }
+
+        Object.keys(domains).forEach(domain => {
+          data.id = domain;
+          data.name = domain;
+
+          foundDevices.push(this.getDeviceData(data));
+        });
+      } catch (err) {
+        throw new Error(this.homey.__(err.message));
       }
-
-      Object.keys(domains).forEach(domain => {
-        data.id = domain;
-        data.name = domain;
-
-        foundDevices.push(this.getDeviceData(data));
-      });
     });
 
     session.setHandler('list_devices', async () => {
