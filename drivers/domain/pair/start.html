@@ -1,12 +1,48 @@
 <style type="text/css">
-    #pair-template {height:100%;display:flex;flex-direction:column;align-items:center}
-    #pair-form {position:relative;width:90%}
-    .row {margin-bottom:1em}
-    .logo {display:block;position:relative;width:25vw;height:25vw;margin:10vw auto;background-position:center center;background-repeat:no-repeat;background-size:contain;background-image:url(./../assets/icon.svg)}
-    .invalid > label {color: #FF0000 !important}
-    .invalid > input {border-bottom:1px solid #FF0000 !important}
-    .button {width:100% !important}
-    .button:disabled,.button[disabled] {background-color:#ffffff !important;color: #ffffff !important;}
+  #pair-template {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+  }
+
+  #pair-form {
+    position: relative;
+    width: 90%
+  }
+
+  .row {
+    margin-bottom: 1em
+  }
+
+  .logo {
+    display: block;
+    position: relative;
+    width: 25vw;
+    height: 25vw;
+    margin: 10vw auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(./../assets/icon.svg)
+  }
+
+  .invalid > label {
+    color: #FF0000 !important
+  }
+
+  .invalid > input {
+    border-bottom: 1px solid #FF0000 !important
+  }
+
+  .button {
+    width: 100% !important
+  }
+
+  .button:disabled, .button[disabled] {
+    background-color: #ffffff !important;
+    color: #ffffff !important;
+  }
 </style>
 
 <div id="pair-template">
@@ -92,12 +128,12 @@
       pass: pPass.value
     };
 
-    Homey.emit('connect', data, (error) => {
+    Homey.emit('connect', data, (err) => {
       pBtn.disabled = false;
 
-      if (error) {
+      if (err) {
         Homey.hideLoadingOverlay();
-        Homey.alert(error.message);
+        Homey.alert(err.message, 'error');
       } else {
         Homey.nextView();
       }
