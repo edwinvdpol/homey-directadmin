@@ -27,7 +27,7 @@ class ServerDriver extends Driver {
 
         // Check if the version valid
         if (version < 1580) {
-          throw new Error(this.homey.__('api.version', {version: result.version}));
+          throw new Error(this.homey.__('api.version', { version: result.version }));
         }
 
         data.id = result.lid;

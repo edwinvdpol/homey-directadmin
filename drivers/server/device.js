@@ -1,7 +1,7 @@
 'use strict';
 
 const Device = require('../../lib/Device');
-const {filled} = require('../../lib/Utils');
+const { filled } = require('../../lib/Utils');
 
 class ServerDevice extends Device {
 
@@ -33,7 +33,7 @@ class ServerDevice extends Device {
       ip: filled(license.ip) ? license.ip : '-',
       name: filled(license.name) ? license.name : '-',
       os_name: filled(license.os_name) ? license.os_name : '-',
-      version: filled(license.version) ? license.version : '-'
+      version: filled(license.version) ? license.version : '-',
     }).catch(this.error);
   }
 

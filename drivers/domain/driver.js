@@ -1,7 +1,7 @@
 'use strict';
 
 const Driver = require('../../lib/Driver');
-const {blank} = require('../../lib/Utils');
+const { blank } = require('../../lib/Utils');
 const Client = require('../../lib/Client');
 
 class DomainDriver extends Driver {
@@ -10,7 +10,7 @@ class DomainDriver extends Driver {
   onPair(session) {
     this.log('Pairing started');
 
-    let foundDevices = [];
+    const foundDevices = [];
 
     session.setHandler('connect', async (data) => {
       this.log('Connecting to server');
@@ -35,7 +35,7 @@ class DomainDriver extends Driver {
           throw new Error('error.no_domains_found');
         }
 
-        Object.keys(domains).forEach(domain => {
+        Object.keys(domains).forEach((domain) => {
           data.id = domain;
           data.name = domain;
 

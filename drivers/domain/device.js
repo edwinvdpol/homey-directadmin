@@ -1,9 +1,9 @@
 'use strict';
 
 const pretty = require('prettysize');
-const Device = require('../../lib/Device');
-const {filled} = require('../../lib/Utils');
 const qs = require('querystring');
+const Device = require('../../lib/Device');
+const { filled } = require('../../lib/Utils');
 
 class DomainDevice extends Device {
 
@@ -42,7 +42,7 @@ class DomainDevice extends Device {
       await this.checkDomainIsActive(data.active);
     }
 
-    let newSettings = {};
+    const newSettings = {};
 
     // Set device capabilities
     if (filled(data.bandwidth)) {
@@ -72,7 +72,7 @@ class DomainDevice extends Device {
     let emailCount = 0;
     let emailUsage = 0;
 
-    Object.keys(data).forEach(user => {
+    Object.keys(data).forEach((user) => {
       const inbox = qs.parse(data[user]);
 
       emailCount++;
@@ -84,7 +84,7 @@ class DomainDevice extends Device {
     // Set device settings
     this.setSettings({
       email_accounts: String(emailCount),
-      email_quota: this.getEmailQuota(emailUsage)
+      email_quota: this.getEmailQuota(emailUsage),
     }).catch(this.error);
   }
 
