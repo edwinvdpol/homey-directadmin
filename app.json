@@ -365,19 +365,17 @@
   },
   "drivers": [
     {
+      "class": "other",
       "images": {
         "small": "/drivers/domain/assets/images/small.png",
         "large": "/drivers/domain/assets/images/large.png"
       },
-      "icon": "/drivers/domain/assets/icon.svg",
-      "class": "other",
-      "connectivity": [
-        "lan"
-      ],
       "platforms": [
         "local"
       ],
-      "id": "domain",
+      "connectivity": [
+        "lan"
+      ],
       "name": {
         "en": "Domain",
         "nl": "Domein"
@@ -405,6 +403,7 @@
           "template": "add_devices"
         }
       ],
+      "id": "domain",
       "settings": [
         {
           "type": "group",
@@ -517,19 +516,17 @@
       ]
     },
     {
+      "class": "other",
       "images": {
         "small": "/drivers/server/assets/images/small.png",
         "large": "/drivers/server/assets/images/large.png"
       },
-      "icon": "/drivers/server/assets/icon.svg",
-      "class": "other",
-      "connectivity": [
-        "lan"
-      ],
       "platforms": [
         "local"
       ],
-      "id": "server",
+      "connectivity": [
+        "lan"
+      ],
       "name": {
         "en": "Server"
       },
@@ -548,6 +545,7 @@
           "id": "start"
         }
       ],
+      "id": "server",
       "settings": [
         {
           "type": "group",
