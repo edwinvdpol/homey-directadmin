@@ -1,20 +1,20 @@
 {
   "api": {
-    "badRequest": "Ongeldig API request",
-    "connection": "Kon geen verbinding met server maken",
-    "error": "Er is een serverfout opgetreden",
-    "timeout": "De server reageerde niet op tijd",
-    "unauthorized": "Gebruikersnaam of wachtwoord is ongeldig",
-    "version": "Versie __version__ wordt niet ondersteund"
+    "badRequest": "Ongeldig API request.",
+    "connection": "Kon geen verbinding met server maken.",
+    "error": "Er is een serverfout opgetreden.",
+    "timeout": "De server reageerde niet op tijd.",
+    "unauthorized": "Gebruikersnaam of wachtwoord is ongeldig.",
+    "version": "Versie __version__ wordt niet ondersteund."
   },
   "login": "Inloggen",
   "password": "Wachtwoord",
   "port": "Poort",
   "username": "Gebruikersnaam",
   "error": {
-    "domain_is_deactivated": "Domein is niet actief",
-    "domain_is_suspended": "Domein is opgeschort",
-    "domain_not_found": "Domein niet gevonden",
-    "no_domains_found": "Geen domeinen gevonden"
+    "domain_is_deactivated": "Domein is niet actief.",
+    "domain_is_suspended": "Domein is opgeschort.",
+    "domain_not_found": "Domein niet gevonden.",
+    "no_domains_found": "Geen domeinen gevonden."
   }
 }

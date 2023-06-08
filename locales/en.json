@@ -1,20 +1,20 @@
 {
   "api": {
-    "badRequest": "Invalid API request",
-    "connection": "Could not connect to server",
-    "error": "A server error occurred",
-    "timeout": "The server did not respond in time",
-    "unauthorized": "Username or password is invalid",
-    "version": "Version __version__ is not supported"
+    "badRequest": "Invalid API request.",
+    "connection": "Could not connect to server.",
+    "error": "A server error occurred.",
+    "timeout": "The server did not respond in time.",
+    "unauthorized": "Username or password is invalid.",
+    "version": "Version __version__ is not supported."
   },
   "login": "Login",
   "password": "Password",
   "port": "Port",
   "username": "Username",
   "error": {
-    "domain_is_deactivated": "Domain is deactivated",
-    "domain_is_suspended": "Domain is suspended",
-    "domain_not_found": "Domain not found",
-    "no_domains_found": "No domains found"
+    "domain_is_deactivated": "Domain is deactivated.",
+    "domain_is_suspended": "Domain is suspended.",
+    "domain_not_found": "Domain not found.",
+    "no_domains_found": "No domains found."
   }
 }
