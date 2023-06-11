@@ -10,10 +10,10 @@ class DomainDevice extends Device {
   static BYTESINMB = 1048576;
 
   /*
-  | Capabilities
+  | Synchronization functions
   */
 
-  // Set device data
+  // Handle sync data
   async handleSyncData(data) {
     this.log('Update device', JSON.stringify(data));
 
@@ -30,7 +30,7 @@ class DomainDevice extends Device {
     this.setAvailable().catch(this.error);
   }
 
-  // Set domain data
+  // Handle domain data
   async handleDomainData(data) {
     // Check if domain is suspended
     if (filled(data.suspended)) {
@@ -42,7 +42,7 @@ class DomainDevice extends Device {
       await this.checkDomainIsActive(data.active);
     }
 
-    const newSettings = {};
+    let newSettings = {};
 
     // Set device capabilities
     if (filled(data.bandwidth)) {
@@ -65,9 +65,11 @@ class DomainDevice extends Device {
     if (filled(newSettings)) {
       this.setSettings(newSettings).catch(this.error);
     }
+
+    newSettings = null;
   }
 
-  // Set email data
+  // Handle email data
   async handleEmailData(data) {
     let emailCount = 0;
     let emailUsage = 0;
@@ -97,7 +99,7 @@ class DomainDevice extends Device {
     if (active === 'no') {
       this.setCapabilityValue('active', false).catch(this.error);
 
-      throw new Error(this.homey.__('error.domain_is_deactivated'));
+      throw new Error(this.homey.__('errors.domain_deactivated'));
     }
 
     this.setCapabilityValue('active', true).catch(this.error);
@@ -108,7 +110,7 @@ class DomainDevice extends Device {
     if (suspended === 'yes') {
       this.setCapabilityValue('suspended', true).catch(this.error);
 
-      throw new Error(this.homey.__('error.domain_is_suspended'));
+      throw new Error(this.homey.__('errors.domain_suspended'));
     }
 
     this.setCapabilityValue('suspended', false).catch(this.error);

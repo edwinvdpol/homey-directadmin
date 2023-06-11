@@ -8,31 +8,30 @@ class DomainDriver extends Driver {
 
   // Pairing
   onPair(session) {
-    this.log('Pairing started');
+    this.log('Pairing started...');
 
     const foundDevices = [];
 
     session.setHandler('connect', async (data) => {
-      this.log('Connecting to server');
+      this.log('Connecting to server...');
 
-      // Remove trailing slash
-      if (data.host.slice(-1) === '/') {
-        data.host = data.host.slice(0, -1);
-      }
+      let settings;
+      let domains;
+      let client;
 
       try {
         // Get connection settings
-        const settings = this.getConnectSettings(data);
+        settings = this.getConnectSettings(data);
 
         // Setup client
-        const client = new Client(settings);
+        client = new Client(settings);
 
         // Get domains
-        const domains = await client.call('ADDITIONAL_DOMAINS');
+        domains = await client.call('ADDITIONAL_DOMAINS');
 
         // No domains found
         if (blank(domains)) {
-          throw new Error('error.no_domains_found');
+          throw new Error('errors.no_domains_found');
         }
 
         Object.keys(domains).forEach((domain) => {
@@ -43,6 +42,10 @@ class DomainDriver extends Driver {
         });
       } catch (err) {
         throw new Error(this.homey.__(err.message));
+      } finally {
+        settings = null;
+        domains = null;
+        client = null;
       }
     });
 

@@ -5,25 +5,29 @@ const { filled } = require('../../lib/Utils');
 
 class ServerDevice extends Device {
 
-  // Set device data
+  /*
+  | Synchronization functions
+  */
+
+  // Handle sync data
   async handleSyncData(data) {
     this.log('Update device', JSON.stringify(data));
 
     // Set license data
     if (filled(data.license)) {
-      this.handleLicenseData(data.license);
+      await this.handleLicenseData(data.license);
     }
 
     // Set statistics data
     if (filled(data.stats)) {
-      this.handleStatsData(data.stats);
+      await this.handleStatsData(data.stats);
     }
 
     this.setAvailable().catch(this.error);
   }
 
-  // Set license data
-  handleLicenseData(license) {
+  // Handle license data
+  async handleLicenseData(license) {
     if (filled(license.update_available)) {
       this.setCapabilityValue('update_available', license.update_available !== '0').catch(this.error);
     }
@@ -37,8 +41,8 @@ class ServerDevice extends Device {
     }).catch(this.error);
   }
 
-  // Set statistics data
-  handleStatsData(stats) {
+  // Handle statistics data
+  async handleStatsData(stats) {
     if (filled(stats.bandwidth)) {
       this.setCapabilityValue('server_bandwidth', Number(stats.bandwidth / 1024)).catch(this.error);
     }

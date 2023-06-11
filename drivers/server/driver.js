@@ -7,36 +7,46 @@ class ServerDriver extends Driver {
 
   // Pairing
   onPair(session) {
-    this.log('Pairing started');
+    this.log('Pairing started...');
 
     session.setHandler('connect', async (data) => {
-      this.log('Connecting to server');
+      this.log('Connecting to server...');
+
+      let settings;
+      let license;
+      let version;
+      let client;
 
       try {
         // Get connection settings
-        const settings = this.getConnectSettings(data);
+        settings = this.getConnectSettings(data);
 
         // Setup client
-        const client = new Client(settings);
+        client = new Client(settings);
 
         // Get license
-        const result = await client.call('LICENSE');
+        license = await client.call('LICENSE');
 
         // Get version
-        const version = Number(result.version.replace(/\./g, ''));
+        version = Number(license.version.replace(/\./g, ''));
 
         // Check if the version valid
         if (version < 1580) {
-          throw new Error(this.homey.__('api.version', { version: result.version }));
+          throw new Error(this.homey.__('errors.version', { version: license.version }));
         }
 
-        data.id = result.lid;
-        data.name = `DA v${result.version} server`;
+        data.id = license.lid;
+        data.name = `DA v${license.version} server`;
 
         // Emit create device event
         await session.emit('create', this.getDeviceData(data));
       } catch (err) {
         throw new Error(this.homey.__(err.message));
+      } finally {
+        settings = null;
+        license = null;
+        version = null;
+        client = null;
       }
     });
   }
