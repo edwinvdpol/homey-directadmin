@@ -124,7 +124,7 @@
       host: pHost.value,
       port: pPort.value,
       user: pUser.value,
-      pass: pPass.value
+      pass: pPass.value,
     };
 
     Homey.emit('connect', data, (err) => {
@@ -135,16 +135,15 @@
         Homey.alert(err.message, 'error');
       }
     });
-
-    Homey.on('create', function (data) {
-      Homey.createDevice(data)
-        .then(function () {
-          Homey.done();
-        })
-        .catch(function (err) {
-          Homey.alert(err, 'error');
-        });
-    });
-
   }
+
+  Homey.on('create', function (data) {
+    Homey.createDevice(data)
+      .then(function () {
+        Homey.done();
+      })
+      .catch(function (err) {
+        Homey.alert(err, 'error');
+      });
+  });
 </script>
