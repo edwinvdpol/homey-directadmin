@@ -11,7 +11,7 @@ class ServerDevice extends Device {
 
   // Handle sync data
   async handleSyncData(data) {
-    this.log('Update device', JSON.stringify(data));
+    this.log('[Sync]', JSON.stringify(data));
 
     // Set license data
     if (filled(data.license)) {
