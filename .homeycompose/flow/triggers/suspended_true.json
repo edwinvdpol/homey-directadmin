@@ -14,7 +14,7 @@
     {
       "type": "device",
       "name": "device",
-      "filter": "driver_id=domain"
+      "filter": "driver_id=domain&capabilities=suspended"
     }
   ]
 }

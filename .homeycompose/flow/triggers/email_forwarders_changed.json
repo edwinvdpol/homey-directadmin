@@ -1,11 +1,11 @@
 {
   "title": {
-    "en": "Forwarders has changed",
+    "en": "Forwarders changed",
     "nl": "Doorstuurders is veranderd"
   },
   "hint": {
-    "en": "This flowcard triggers when the number of forwarders has changed.",
-    "nl": "Deze flowcard wordt geactiveerd wanneer het aantal doorstuurders veranderd is."
+    "en": "This flowcard triggers when the number of forwarders was changed.",
+    "nl": "Deze flowcard wordt geactiveerd wanneer het aantal doorstuurders veranderd werd."
   },
   "platforms": [
     "local"
@@ -14,7 +14,7 @@
     {
       "type": "device",
       "name": "device",
-      "filter": "driver_id=server"
+      "filter": "driver_id=server&capabilities=email_forwarders"
     }
   ]
 }

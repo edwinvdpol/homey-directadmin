@@ -14,7 +14,7 @@
     {
       "type": "device",
       "name": "device",
-      "filter": "driver_id=server"
+      "filter": "driver_id=server&capabilities=update_available"
     }
   ]
 }

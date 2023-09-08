@@ -1,11 +1,11 @@
 {
   "title": {
-    "en": "Bandwidth has changed",
+    "en": "Bandwidth changed",
     "nl": "Bandbreedte is veranderd"
   },
   "hint": {
-    "en": "This flowcard triggers when the bandwidth has changed.",
-    "nl": "Deze flowcard wordt geactiveerd wanneer de bandbreedte veranderd is."
+    "en": "This flowcard triggers when the bandwidth was changed.",
+    "nl": "Deze flowcard wordt geactiveerd wanneer de bandbreedte veranderd werd."
   },
   "platforms": [
     "local"
@@ -14,7 +14,7 @@
     {
       "type": "device",
       "name": "device",
-      "filter": "driver_id=server"
+      "filter": "driver_id=server&capabilities=server_bandwidth"
     }
   ]
 }
