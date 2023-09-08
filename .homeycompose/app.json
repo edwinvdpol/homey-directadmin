@@ -62,6 +62,10 @@
       }
     }
   },
+  "bugs": {
+    "url": "https://community.homey.app/t/89042"
+  },
+  "homeyCommunityTopicId": 89042,
   "homepage": "https://directadmin.com",
-  "support": "mailto:developer@edwinvandepol.nl"
+  "support": "https://community.homey.app/t/89042"
 }
