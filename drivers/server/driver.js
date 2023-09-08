@@ -7,10 +7,10 @@ class ServerDriver extends Driver {
 
   // Pairing
   onPair(session) {
-    this.log('Pairing started...');
+    this.log('Pairing servers');
 
     session.setHandler('connect', async (data) => {
-      this.log('Connecting to server...');
+      this.log('Connecting to server');
 
       let settings;
       let license;

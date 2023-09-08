@@ -8,12 +8,12 @@ class DomainDriver extends Driver {
 
   // Pairing
   onPair(session) {
-    this.log('Pairing started...');
+    this.log('Pairing domains');
 
     const foundDevices = [];
 
     session.setHandler('connect', async (data) => {
-      this.log('Connecting to server...');
+      this.log('Connecting to server');
 
       let settings;
       let domains;
