@@ -1,7 +1,7 @@
 'use strict';
 
 const Device = require('../../lib/Device');
-const { filled } = require('../../lib/Utils');
+const { blank, filled } = require('../../lib/Utils');
 
 class ServerDevice extends Device {
 
@@ -11,6 +11,8 @@ class ServerDevice extends Device {
 
   // Handle sync data
   async handleSyncData(data) {
+    if (blank(data)) return;
+
     this.log('[Sync]', JSON.stringify(data));
 
     // Set license data

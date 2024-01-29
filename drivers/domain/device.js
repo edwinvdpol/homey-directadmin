@@ -3,7 +3,7 @@
 const pretty = require('prettysize');
 const qs = require('querystring');
 const Device = require('../../lib/Device');
-const { filled } = require('../../lib/Utils');
+const { filled, blank } = require('../../lib/Utils');
 
 class DomainDevice extends Device {
 
@@ -15,6 +15,8 @@ class DomainDevice extends Device {
 
   // Handle sync data
   async handleSyncData(data) {
+    if (blank(data)) return;
+
     this.log('[Sync]', JSON.stringify(data));
 
     // Set domain data
