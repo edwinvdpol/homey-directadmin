@@ -16,12 +16,12 @@ class ServerDevice extends Device {
     this.log('[Sync]', JSON.stringify(data));
 
     // Set license data
-    if (filled(data.license)) {
+    if ('license' in data) {
       await this.handleLicenseData(data.license);
     }
 
     // Set statistics data
-    if (filled(data.stats)) {
+    if ('stats' in data) {
       await this.handleStatsData(data.stats);
     }
 
@@ -30,7 +30,7 @@ class ServerDevice extends Device {
 
   // Handle license data
   async handleLicenseData(license) {
-    if (filled(license.update_available)) {
+    if ('update_available' in license) {
       this.setCapabilityValue('update_available', license.update_available !== '0').catch(this.error);
     }
 
@@ -45,31 +45,31 @@ class ServerDevice extends Device {
 
   // Handle statistics data
   async handleStatsData(stats) {
-    if (filled(stats.bandwidth)) {
+    if ('bandwidth' in stats) {
       this.setCapabilityValue('server_bandwidth', Number(stats.bandwidth / 1024)).catch(this.error);
     }
 
-    if (filled(stats.mysql)) {
+    if ('mysql' in stats) {
       this.setCapabilityValue('databases', Number(stats.mysql)).catch(this.error);
     }
 
-    if (filled(stats.vdomains)) {
+    if ('vdomains' in stats) {
       this.setCapabilityValue('domains', Number(stats.vdomains)).catch(this.error);
     }
 
-    if (filled(stats.nemails)) {
+    if ('nemails' in stats) {
       this.setCapabilityValue('email_accounts', Number(stats.nemails)).catch(this.error);
     }
 
-    if (filled(stats.nemailf)) {
+    if ('nemailf' in stats) {
       this.setCapabilityValue('email_forwarders', Number(stats.nemailf)).catch(this.error);
     }
 
-    if (filled(stats.nusers)) {
+    if ('nusers' in stats) {
       this.setCapabilityValue('users', Number(stats.nusers)).catch(this.error);
     }
 
-    if (filled(stats.nresellers)) {
+    if ('nresellers' in stats) {
       this.setCapabilityValue('resellers', Number(stats.nresellers)).catch(this.error);
     }
   }

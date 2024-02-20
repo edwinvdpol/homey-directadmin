@@ -20,12 +20,12 @@ class DomainDevice extends Device {
     this.log('[Sync]', JSON.stringify(data));
 
     // Set domain data
-    if (filled(data.domain)) {
+    if ('domain' in data) {
       await this.handleDomainData(data.domain);
     }
 
     // Set email data
-    if (filled(data.email)) {
+    if ('email' in data) {
       await this.handleEmailData(data.email);
     }
 
@@ -35,30 +35,30 @@ class DomainDevice extends Device {
   // Handle domain data
   async handleDomainData(data) {
     // Check if domain is suspended
-    if (filled(data.suspended)) {
+    if ('suspended' in data) {
       await this.checkDomainIsSuspended(data.suspended);
     }
 
     // Check if domain is active
-    if (filled(data.active)) {
+    if ('active' in data) {
       await this.checkDomainIsActive(data.active);
     }
 
     let newSettings = {};
 
     // Set device capabilities
-    if (filled(data.bandwidth)) {
+    if ('bandwidth' in data) {
       this.setCapabilityValue('bandwidth', parseFloat(data.bandwidth)).catch(this.error);
 
-      if (filled(data.bandwidth_limit)) {
+      if ('bandwidth_limit' in data) {
         newSettings.domain_bandwidth = this.getBandwidth(data.bandwidth, data.bandwidth_limit);
       }
     }
 
-    if (filled(data.quota)) {
+    if ('quota' in data) {
       this.setCapabilityValue('quota', parseFloat(data.quota)).catch(this.error);
 
-      if (filled(data.quota_limit)) {
+      if ('quota_limit' in data) {
         newSettings.domain_quota = this.getQuota(data.quota, data.quota_limit);
       }
     }
