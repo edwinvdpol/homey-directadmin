@@ -2,8 +2,8 @@
   {
     "type": "group",
     "label": {
-      "en": "License information",
-      "nl": "Licentie informatie"
+      "en": "License",
+      "nl": "Licentie"
     },
     "children": [
       {
@@ -23,8 +23,7 @@
   {
     "type": "group",
     "label": {
-      "en": "Server settings",
-      "nl": "Server instellingen"
+      "en": "Server"
     },
     "children": [
       {
@@ -38,8 +37,7 @@
   {
     "type": "group",
     "label": {
-      "en": "Login credentials",
-      "nl": "Inloggegevens"
+      "en": "Account"
     },
     "children": [
       {

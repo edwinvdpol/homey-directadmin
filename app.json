@@ -412,8 +412,8 @@
         {
           "type": "group",
           "label": {
-            "en": "Domain statistics",
-            "nl": "Domein statistieken"
+            "en": "Domain",
+            "nl": "Domein"
           },
           "children": [
             {
@@ -439,8 +439,8 @@
         {
           "type": "group",
           "label": {
-            "en": "Email statistics",
-            "nl": "E-mail statistieken"
+            "en": "Email",
+            "nl": "E-mail"
           },
           "children": [
             {
@@ -466,8 +466,8 @@
         {
           "type": "group",
           "label": {
-            "en": "Server settings",
-            "nl": "Server instellingen"
+            "en": "Server",
+            "nl": "Server"
           },
           "children": [
             {
@@ -493,8 +493,7 @@
         {
           "type": "group",
           "label": {
-            "en": "Login credentials",
-            "nl": "Inloggegevens"
+            "en": "Account"
           },
           "children": [
             {
@@ -554,8 +553,8 @@
         {
           "type": "group",
           "label": {
-            "en": "License information",
-            "nl": "Licentie informatie"
+            "en": "License",
+            "nl": "Licentie"
           },
           "children": [
             {
@@ -599,8 +598,7 @@
         {
           "type": "group",
           "label": {
-            "en": "Server settings",
-            "nl": "Server instellingen"
+            "en": "Server"
           },
           "children": [
             {
@@ -626,8 +624,7 @@
         {
           "type": "group",
           "label": {
-            "en": "Login credentials",
-            "nl": "Inloggegevens"
+            "en": "Account"
           },
           "children": [
             {
