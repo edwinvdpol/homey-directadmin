@@ -7,12 +7,12 @@ const Client = require('../../lib/Client');
 class DomainDriver extends Driver {
 
   // Pairing
-  onPair(session) {
+  async onPair(session) {
     this.log('Pairing domains');
 
     const foundDevices = [];
 
-    session.setHandler('connect', async (data) => {
+    const onLogin = async (data) => {
       this.log('Connecting to server');
 
       let settings;
@@ -41,17 +41,20 @@ class DomainDriver extends Driver {
           foundDevices.push(this.getDeviceData(data));
         });
       } catch (err) {
-        throw new Error(this.homey.__(err.message));
+        this.error('[Pair]', err.toString());
+        throw new Error(this.homey.__(err.message) || err.message);
       } finally {
         settings = null;
         domains = null;
         client = null;
       }
-    });
+    };
 
-    session.setHandler('list_devices', async () => {
-      return Promise.resolve(foundDevices);
-    });
+    const onListDevices = async () => foundDevices;
+
+    session
+      .setHandler('login', onLogin)
+      .setHandler('list_devices', onListDevices);
   }
 
 }

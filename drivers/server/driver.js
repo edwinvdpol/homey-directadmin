@@ -6,10 +6,10 @@ const Client = require('../../lib/Client');
 class ServerDriver extends Driver {
 
   // Pairing
-  onPair(session) {
+  async onPair(session) {
     this.log('Pairing servers');
 
-    session.setHandler('connect', async (data) => {
+    const onLogin = async (data) => {
       this.log('Connecting to server');
 
       let settings;
@@ -41,14 +41,17 @@ class ServerDriver extends Driver {
         // Emit create device event
         await session.emit('create', this.getDeviceData(data));
       } catch (err) {
-        throw new Error(this.homey.__(err.message));
+        this.error('[Pair]', err.toString());
+        throw new Error(this.homey.__(err.message) || err.message);
       } finally {
         settings = null;
         license = null;
         version = null;
         client = null;
       }
-    });
+    };
+
+    session.setHandler('login', onLogin);
   }
 
 }

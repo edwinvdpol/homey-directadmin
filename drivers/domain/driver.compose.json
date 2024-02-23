@@ -12,7 +12,7 @@
   ],
   "pair": [
     {
-      "id": "start"
+      "id": "credentials"
     },
     {
       "id": "list_devices",
