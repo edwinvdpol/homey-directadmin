@@ -108,15 +108,7 @@ class DomainDriver extends Driver {
       }
     };
 
-    const onShowView = async (viewId) => {
-      if (viewId === 'credentials') {
-        session.emit('fill', device.getStore()).catch(this.error);
-      }
-    };
-
-    session
-      .setHandler('login', onLogin)
-      .setHandler('showView', onShowView);
+    session.setHandler('login', onLogin);
   }
 
 }
