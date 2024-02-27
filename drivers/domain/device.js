@@ -44,52 +44,19 @@ class DomainDevice extends Device {
       await this.checkDomainIsActive(data.active);
     }
 
-    let newSettings = {};
-
     // Set device capabilities
     if ('bandwidth' in data) {
       this.setCapabilityValue('bandwidth', parseFloat(data.bandwidth)).catch(this.error);
-
-      if ('bandwidth_limit' in data) {
-        newSettings.domain_bandwidth = this.getBandwidth(data.bandwidth, data.bandwidth_limit);
-      }
     }
 
     if ('quota' in data) {
       this.setCapabilityValue('quota', parseFloat(data.quota)).catch(this.error);
-
-      if ('quota_limit' in data) {
-        newSettings.domain_quota = this.getQuota(data.quota, data.quota_limit);
-      }
     }
-
-    // Set device settings
-    if (filled(newSettings)) {
-      this.setSettings(newSettings).catch(this.error);
-    }
-
-    newSettings = null;
   }
 
   // Handle email data
   async handleEmailData(data) {
-    let emailCount = 0;
-    let emailUsage = 0;
-
-    Object.keys(data).forEach((user) => {
-      const inbox = qs.parse(data[user]);
-
-      emailCount++;
-      emailUsage += parseFloat(inbox.usage);
-    });
-
-    this.setCapabilityValue('email_accounts', Number(emailCount)).catch(this.error);
-
-    // Set device settings
-    this.setSettings({
-      email_accounts: String(emailCount),
-      email_quota: this.getEmailQuota(emailUsage),
-    }).catch(this.error);
+    this.setCapabilityValue('email_accounts', Number(Object.keys(data).length)).catch(this.error);
   }
 
   /*
