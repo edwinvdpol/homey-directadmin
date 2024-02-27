@@ -1,8 +1,0 @@
-{
-  "type": "label",
-  "label": {
-    "en": "Disk usage",
-    "nl": "Schijfgebruik"
-  },
-  "value": "-"
-}

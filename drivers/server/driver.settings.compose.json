@@ -19,33 +19,5 @@
         "$extends": "version"
       }
     ]
-  },
-  {
-    "type": "group",
-    "label": {
-      "en": "Server"
-    },
-    "children": [
-      {
-        "$extends": "host"
-      },
-      {
-        "$extends": "port"
-      }
-    ]
-  },
-  {
-    "type": "group",
-    "label": {
-      "en": "Account"
-    },
-    "children": [
-      {
-        "$extends": "user"
-      },
-      {
-        "$extends": "pass"
-      }
-    ]
   }
 ]

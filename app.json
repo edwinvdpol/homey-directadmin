@@ -380,6 +380,11 @@
       "connectivity": [
         "lan"
       ],
+      "repair": [
+        {
+          "id": "credentials"
+        }
+      ],
       "name": {
         "en": "Domain",
         "nl": "Domein"
@@ -407,116 +412,7 @@
           "template": "add_devices"
         }
       ],
-      "id": "domain",
-      "settings": [
-        {
-          "type": "group",
-          "label": {
-            "en": "Domain",
-            "nl": "Domein"
-          },
-          "children": [
-            {
-              "id": "domain_bandwidth",
-              "type": "label",
-              "label": {
-                "en": "Bandwidth",
-                "nl": "Bandbreedte"
-              },
-              "value": "-"
-            },
-            {
-              "id": "domain_quota",
-              "type": "label",
-              "label": {
-                "en": "Disk usage",
-                "nl": "Schijfgebruik"
-              },
-              "value": "-"
-            }
-          ]
-        },
-        {
-          "type": "group",
-          "label": {
-            "en": "Email",
-            "nl": "E-mail"
-          },
-          "children": [
-            {
-              "id": "email_accounts",
-              "type": "label",
-              "label": {
-                "en": "Accounts",
-                "nl": "Accounts"
-              },
-              "value": "-"
-            },
-            {
-              "id": "email_quota",
-              "type": "label",
-              "label": {
-                "en": "Disk usage",
-                "nl": "Schijfgebruik"
-              },
-              "value": "-"
-            }
-          ]
-        },
-        {
-          "type": "group",
-          "label": {
-            "en": "Server",
-            "nl": "Server"
-          },
-          "children": [
-            {
-              "id": "host",
-              "type": "text",
-              "label": {
-                "en": "URL"
-              },
-              "value": "-"
-            },
-            {
-              "id": "port",
-              "type": "number",
-              "label": {
-                "en": "Port",
-                "nl": "Poort"
-              },
-              "value": 2222,
-              "min": 1
-            }
-          ]
-        },
-        {
-          "type": "group",
-          "label": {
-            "en": "Account"
-          },
-          "children": [
-            {
-              "id": "user",
-              "type": "text",
-              "label": {
-                "en": "Username",
-                "nl": "Gebruikersnaam"
-              },
-              "value": "-"
-            },
-            {
-              "id": "pass",
-              "type": "password",
-              "label": {
-                "en": "Password",
-                "nl": "Wachtwoord"
-              },
-              "value": "-"
-            }
-          ]
-        }
-      ]
+      "id": "domain"
     },
     {
       "class": "other",
@@ -529,6 +425,11 @@
       ],
       "connectivity": [
         "lan"
+      ],
+      "repair": [
+        {
+          "id": "credentials"
+        }
       ],
       "name": {
         "en": "Server"
@@ -590,58 +491,6 @@
               "label": {
                 "en": "Software version",
                 "nl": "Software versie"
-              },
-              "value": "-"
-            }
-          ]
-        },
-        {
-          "type": "group",
-          "label": {
-            "en": "Server"
-          },
-          "children": [
-            {
-              "id": "host",
-              "type": "text",
-              "label": {
-                "en": "URL"
-              },
-              "value": "-"
-            },
-            {
-              "id": "port",
-              "type": "number",
-              "label": {
-                "en": "Port",
-                "nl": "Poort"
-              },
-              "value": 2222,
-              "min": 1
-            }
-          ]
-        },
-        {
-          "type": "group",
-          "label": {
-            "en": "Account"
-          },
-          "children": [
-            {
-              "id": "user",
-              "type": "text",
-              "label": {
-                "en": "Username",
-                "nl": "Gebruikersnaam"
-              },
-              "value": "-"
-            },
-            {
-              "id": "pass",
-              "type": "password",
-              "label": {
-                "en": "Password",
-                "nl": "Wachtwoord"
               },
               "value": "-"
             }

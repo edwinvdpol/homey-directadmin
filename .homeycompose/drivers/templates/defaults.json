@@ -9,5 +9,10 @@
   ],
   "connectivity": [
     "lan"
+  ],
+  "repair": [
+    {
+      "id": "credentials"
+    }
   ]
 }

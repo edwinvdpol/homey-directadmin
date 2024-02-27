@@ -1,9 +1,0 @@
-{
-  "type": "number",
-  "label": {
-    "en": "Port",
-    "nl": "Poort"
-  },
-  "value": 2222,
-  "min": 1
-}
