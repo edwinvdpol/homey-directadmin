@@ -61,10 +61,14 @@ class ServerDriver extends Driver {
    * @param {ServerDevice|Device} device
    */
   async onRepair(session, device) {
-    this.log('Repairing device');
+    this.log('[Repair] Session connected');
+
+    const onDisconnect = async () => {
+      this.log('[Repair] Session disconnected');
+    };
 
     const onLogin = async (data) => {
-      this.log('Connecting to server');
+      this.log('[Repair] Connecting');
 
       let store;
       let license;
@@ -105,7 +109,9 @@ class ServerDriver extends Driver {
       }
     };
 
-    session.setHandler('login', onLogin);
+    session
+      .setHandler('login', onLogin)
+      .setHandler('disconnect', onDisconnect);
   }
 
 }
