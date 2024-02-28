@@ -1,9 +1,8 @@
 'use strict';
 
 const pretty = require('prettysize');
-const qs = require('querystring');
 const Device = require('../../lib/Device');
-const { filled, blank } = require('../../lib/Utils');
+const { blank } = require('../../lib/Utils');
 
 class DomainDevice extends Device {
 
