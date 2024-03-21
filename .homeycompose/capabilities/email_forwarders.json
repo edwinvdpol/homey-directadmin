@@ -1,10 +1,10 @@
 {
   "type": "number",
-  "getable": true,
-  "setable": false,
-  "icon": "/assets/email.svg",
   "title": {
     "en": "Forwarders",
     "nl": "Doorstuurders"
-  }
+  },
+  "getable": true,
+  "setable": false,
+  "icon": "/assets/email.svg"
 }

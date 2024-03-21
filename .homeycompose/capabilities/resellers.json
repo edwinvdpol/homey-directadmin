@@ -1,10 +1,10 @@
 {
   "type": "number",
-  "getable": true,
-  "setable": false,
-  "icon": "/assets/reseller.svg",
   "title": {
     "en": "Resellers",
     "nl": "Resellers"
-  }
+  },
+  "getable": true,
+  "setable": false,
+  "icon": "/assets/reseller.svg"
 }

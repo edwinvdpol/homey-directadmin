@@ -502,132 +502,132 @@
   "capabilities": {
     "active": {
       "type": "boolean",
-      "getable": true,
-      "setable": false,
-      "icon": "/assets/domain.svg",
       "title": {
         "en": "Active",
         "nl": "Actief"
-      }
+      },
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/domain.svg"
     },
     "bandwidth": {
       "type": "number",
-      "insights": true,
-      "getable": true,
-      "setable": false,
-      "icon": "/assets/bandwidth.svg",
-      "decimals": 2,
-      "units": "MB",
       "title": {
         "en": "Bandwidth",
         "nl": "Bandbreedte"
-      }
+      },
+      "getable": true,
+      "setable": false,
+      "insights": true,
+      "decimals": 2,
+      "units": "MB",
+      "icon": "/assets/bandwidth.svg"
     },
     "databases": {
       "type": "number",
-      "getable": true,
-      "setable": false,
-      "icon": "/assets/database.svg",
       "title": {
         "en": "Databases",
         "nl": "Databases"
-      }
+      },
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/database.svg"
     },
     "domains": {
       "type": "number",
-      "getable": true,
-      "setable": false,
-      "icon": "/assets/domain.svg",
       "title": {
         "en": "Domains",
         "nl": "Domeinen"
-      }
+      },
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/domain.svg"
     },
     "email_accounts": {
       "type": "number",
-      "getable": true,
-      "setable": false,
-      "icon": "/assets/email.svg",
       "title": {
         "en": "Email Accounts",
         "nl": "E-mailaccounts"
-      }
+      },
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/email.svg"
     },
     "email_forwarders": {
       "type": "number",
-      "getable": true,
-      "setable": false,
-      "icon": "/assets/email.svg",
       "title": {
         "en": "Forwarders",
         "nl": "Doorstuurders"
-      }
+      },
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/email.svg"
     },
     "quota": {
       "type": "number",
-      "insights": true,
-      "getable": true,
-      "setable": false,
-      "icon": "/assets/harddrive.svg",
-      "decimals": 2,
-      "units": "MB",
       "title": {
         "en": "Disk usage",
         "nl": "Schijfgebruik"
-      }
+      },
+      "getable": true,
+      "setable": false,
+      "insights": true,
+      "decimals": 2,
+      "units": "MB",
+      "icon": "/assets/harddrive.svg"
     },
     "resellers": {
       "type": "number",
-      "getable": true,
-      "setable": false,
-      "icon": "/assets/reseller.svg",
       "title": {
         "en": "Resellers",
         "nl": "Resellers"
-      }
+      },
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/reseller.svg"
     },
     "server_bandwidth": {
       "type": "number",
-      "insights": true,
-      "getable": true,
-      "setable": false,
-      "icon": "/assets/bandwidth.svg",
-      "decimals": 2,
-      "units": "GB",
       "title": {
         "en": "Bandwidth",
         "nl": "Bandbreedte"
-      }
+      },
+      "getable": true,
+      "setable": false,
+      "insights": true,
+      "decimals": 2,
+      "units": "GB",
+      "icon": "/assets/bandwidth.svg"
     },
     "suspended": {
       "type": "boolean",
-      "getable": true,
-      "setable": false,
-      "icon": "/assets/server_alert.svg",
       "title": {
         "en": "Suspended",
         "nl": "Geschorst"
-      }
+      },
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/server_alert.svg"
     },
     "update_available": {
       "type": "boolean",
-      "getable": true,
-      "setable": false,
-      "icon": "/assets/server_alert.svg",
       "title": {
         "en": "Update available",
         "nl": "Update beschikbaar"
-      }
+      },
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/server_alert.svg"
     },
     "users": {
       "type": "number",
-      "getable": true,
-      "setable": false,
-      "icon": "/assets/users.svg",
       "title": {
         "en": "Users",
         "nl": "Gebruikers"
-      }
+      },
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/users.svg"
     }
   }
 }

@@ -1,13 +1,13 @@
 {
   "type": "number",
-  "insights": true,
-  "getable": true,
-  "setable": false,
-  "icon": "/assets/bandwidth.svg",
-  "decimals": 2,
-  "units": "GB",
   "title": {
     "en": "Bandwidth",
     "nl": "Bandbreedte"
-  }
+  },
+  "getable": true,
+  "setable": false,
+  "insights": true,
+  "decimals": 2,
+  "units": "GB",
+  "icon": "/assets/bandwidth.svg"
 }

@@ -1,10 +1,10 @@
 {
   "type": "number",
-  "getable": true,
-  "setable": false,
-  "icon": "/assets/users.svg",
   "title": {
     "en": "Users",
     "nl": "Gebruikers"
-  }
+  },
+  "getable": true,
+  "setable": false,
+  "icon": "/assets/users.svg"
 }
