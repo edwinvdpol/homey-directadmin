@@ -31,7 +31,7 @@ class DomainDriver extends Driver {
 
         // No domains found
         if (blank(domains)) {
-          throw new Error('errors.no_domains_found');
+          throw new Error('error.no_domains_found');
         }
 
         Object.keys(domains).forEach((domain) => {
@@ -89,12 +89,12 @@ class DomainDriver extends Driver {
 
         // No domains found
         if (blank(domains)) {
-          throw new Error('errors.no_domains_found');
+          throw new Error('error.no_domains_found');
         }
 
         // Check if domain exists
         if (blank(domains[device.getData().id])) {
-          throw new Error('errors.domain_not_found');
+          throw new Error('error.domain_not_found');
         }
 
         // Save store values

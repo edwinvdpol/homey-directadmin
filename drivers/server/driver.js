@@ -32,7 +32,7 @@ class ServerDriver extends Driver {
 
         // Check if the version valid
         if (version < 1580) {
-          throw new Error(this.homey.__('errors.version', { version: license.version }));
+          throw new Error(this.homey.__('error.version', { version: license.version }));
         }
 
         data.id = license.lid;
@@ -90,7 +90,7 @@ class ServerDriver extends Driver {
 
         // Check if the version valid
         if (version < 1580) {
-          throw new Error(this.homey.__('errors.version', { version: license.version }));
+          throw new Error(this.homey.__('error.version', { version: license.version }));
         }
 
         // Save store values

@@ -67,7 +67,7 @@ class DomainDevice extends Device {
     if (active === 'no') {
       this.setCapabilityValue('active', false).catch(this.error);
 
-      throw new Error(this.homey.__('errors.domain_deactivated'));
+      throw new Error(this.homey.__('error.domain_deactivated'));
     }
 
     this.setCapabilityValue('active', true).catch(this.error);
@@ -78,7 +78,7 @@ class DomainDevice extends Device {
     if (suspended === 'yes') {
       this.setCapabilityValue('suspended', true).catch(this.error);
 
-      throw new Error(this.homey.__('errors.domain_suspended'));
+      throw new Error(this.homey.__('error.domain_suspended'));
     }
 
     this.setCapabilityValue('suspended', false).catch(this.error);

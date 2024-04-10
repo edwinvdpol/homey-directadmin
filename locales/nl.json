@@ -1,5 +1,5 @@
 {
-  "errors": {
+  "error": {
     "400": "Verzoek naar server is onjuist",
     "401": "Inloggegevens zijn onjuist",
     "403": "Toegang tot server is geweigerd",

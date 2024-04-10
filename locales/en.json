@@ -1,5 +1,5 @@
 {
-  "errors": {
+  "error": {
     "400": "Request to server is incorrect",
     "401": "Login details are incorrect",
     "403": "Access to server is denied",
