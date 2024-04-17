@@ -5,12 +5,16 @@ const Client = require('../../lib/Client');
 
 class ServerDriver extends Driver {
 
+  /*
+  | Pairing functions
+  */
+
   // Pairing
   async onPair(session) {
-    this.log('Pairing servers');
+    this.log('[Pair] Started');
 
     const onLogin = async (data) => {
-      this.log('Connecting to server');
+      this.log('[Pair] Connecting to server');
 
       let store;
       let license;

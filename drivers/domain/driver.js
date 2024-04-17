@@ -6,14 +6,18 @@ const Client = require('../../lib/Client');
 
 class DomainDriver extends Driver {
 
+  /*
+  | Pairing functions
+  */
+
   // Pairing
   async onPair(session) {
-    this.log('Pairing domains');
+    this.log('[Pair] Started');
 
     const foundDevices = [];
 
     const onLogin = async (data) => {
-      this.log('Connecting to server');
+      this.log('[Pair] Connecting to server');
 
       let store;
       let domains;
