@@ -1,33 +1,29 @@
 {
-  "1.3.0": {
-    "en": "Added repair screen and updated pairing screen."
+  "1.0.1": {
+    "en": "Added support for the new Homey App Store."
   },
-  "1.2.4": {
-    "en": "Updated store information."
+  "1.1.0": {
+    "en": "Updated to Homey SDK 3. Added settings to edit server settings and login credentials. Added trigger flow cards. Memory usage is optimized."
   },
-  "1.2.3": {
-    "en": "Updated store information. Improved flow cards and logging."
+  "1.1.1": {
+    "en": "Improved error handling and logging."
   },
-  "1.2.2": {
-    "en": "Stability and performance improvements."
+  "1.2.0": {
+    "en": "Updated App Store media and performance improvements."
   },
   "1.2.1": {
     "en": "Stability and performance improvements."
   },
-  "1.2.0": {
-    "en": "Updated App Store media and performance improvements.",
-    "nl": "App Store media bijgewerkt en prestatie verbeteringen."
+  "1.2.2": {
+    "en": "Stability and performance improvements."
   },
-  "1.1.1": {
-    "en": "Improved error handling and logging.",
-    "nl": "Foutafhandeling en logging zijn verbeterd."
+  "1.2.3": {
+    "en": "Updated store information. Improved flow cards and logging."
   },
-  "1.1.0": {
-    "en": "Updated to Homey SDK 3. Added settings to edit server settings and login credentials. Added trigger flow cards. Memory usage is optimized.",
-    "nl": "Geupdate naar Homey SDK 3. Instellingen toegevoegd om serverinstellingen en inloggegevens te bewerken. Trigger flowcards toegevoegd. Geheugengebruik is geoptimaliseerd."
+  "1.2.4": {
+    "en": "Updated store information."
   },
-  "1.0.1": {
-    "en": "Added support for the new Homey App Store",
-    "nl": "Ondersteuning voor nieuwe Homey App Store"
+  "1.3.0": {
+    "en": "Added repair screen and updated pairing screen."
   }
 }
