@@ -1,5 +1,7 @@
 # DirectAdmin for Homey
 
+![Homey App Validation](https://github.com/edwinvdpol/homey-directadmin/actions/workflows/validate.yml/badge.svg)
+
 DirectAdmin is web hosting control panel software that lets you administer your website and hosting options using a
 graphical, web-based interface.
 
