@@ -27,8 +27,6 @@ class DomainDevice extends Device {
     if ('email' in data) {
       await this.handleEmailData(data.email);
     }
-
-    this.setAvailable().catch(this.error);
   }
 
   // Handle domain data

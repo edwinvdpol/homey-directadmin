@@ -1,4 +1,7 @@
 {
+  "authentication": {
+    "connecting": "Connecting..."
+  },
   "error": {
     "400": "Request to server is incorrect",
     "401": "Login details are incorrect",

@@ -24,8 +24,6 @@ class ServerDevice extends Device {
     if ('stats' in data) {
       await this.handleStatsData(data.stats);
     }
-
-    this.setAvailable().catch(this.error);
   }
 
   // Handle license data
