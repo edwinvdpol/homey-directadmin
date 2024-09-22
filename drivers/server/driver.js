@@ -17,7 +17,8 @@ class ServerDriver extends Driver {
       this.log('[Pair] Connecting to server');
 
       let store;
-      let server;
+      let license;
+      let version;
       let client;
 
       try {
@@ -27,22 +28,29 @@ class ServerDriver extends Driver {
         // Setup client
         client = new Client(store);
 
-        // Get server
-        server = await client.getServer();
+        // Get license
+        license = await client.call('LICENSE');
+
+        // Get version
+        version = Number(license.version.replace(/\./g, ''));
 
         // Check if the version valid
-        if (!server.valid) {
-          throw new Error(this.homey.__('error.version', { version: server.version }));
+        if (version < 1580) {
+          throw new Error(this.homey.__('error.version', { version: license.version }));
         }
 
+        data.id = license.lid;
+        data.name = `DA v${license.version} server`;
+
         // Emit create device event
-        await session.emit('create', server.data);
+        await session.emit('create', this.getDeviceData(data));
       } catch (err) {
         this.error('[Pair]', err.toString());
         throw new Error(this.homey.__(err.message) || err.message);
       } finally {
         store = null;
-        server = null;
+        license = null;
+        version = null;
         client = null;
       }
     };
@@ -67,7 +75,8 @@ class ServerDriver extends Driver {
       this.log('[Repair] Connecting');
 
       let store;
-      let server;
+      let license;
+      let version;
       let client;
 
       try {
@@ -77,12 +86,15 @@ class ServerDriver extends Driver {
         // Setup client
         client = new Client(store);
 
-        // Get Server
-        server = await client.getServer();
+        // Get license
+        license = await client.call('LICENSE');
+
+        // Get version
+        version = Number(license.version.replace(/\./g, ''));
 
         // Check if the version valid
-        if (!server.valid) {
-          throw new Error(this.homey.__('error.version', { version: server.version }));
+        if (version < 1580) {
+          throw new Error(this.homey.__('error.version', { version: license.version }));
         }
 
         // Save store values
@@ -95,7 +107,8 @@ class ServerDriver extends Driver {
         throw new Error(this.homey.__(err.message) || err.message);
       } finally {
         store = null;
-        server = null;
+        license = null;
+        version = null;
         client = null;
       }
     };

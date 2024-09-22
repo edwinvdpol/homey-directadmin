@@ -1,6 +1,7 @@
 'use strict';
 
 const Driver = require('../../lib/Driver');
+const { blank } = require('../../lib/Utils');
 const Client = require('../../lib/Client');
 
 class DomainDriver extends Driver {
@@ -13,12 +14,13 @@ class DomainDriver extends Driver {
   async onPair(session) {
     this.log('[Pair] Started');
 
-    let foundDevices = [];
+    const foundDevices = [];
 
     const onLogin = async (data) => {
       this.log('[Pair] Connecting to server');
 
       let store;
+      let domains;
       let client;
 
       try {
@@ -28,13 +30,26 @@ class DomainDriver extends Driver {
         // Setup client
         client = new Client(store);
 
-        // Set found devices
-        foundDevices = await client.discoverDomains();
+        // Get domains
+        domains = await client.call('ADDITIONAL_DOMAINS');
+
+        // No domains found
+        if (blank(domains)) {
+          throw new Error('error.no_domains_found');
+        }
+
+        Object.keys(domains).forEach((domain) => {
+          data.id = domain;
+          data.name = domain;
+
+          foundDevices.push(this.getDeviceData(data));
+        });
       } catch (err) {
         this.error('[Pair]', err.toString());
         throw new Error(this.homey.__(err.message) || err.message);
       } finally {
         store = null;
+        domains = null;
         client = null;
       }
     };
@@ -63,6 +78,7 @@ class DomainDriver extends Driver {
       this.log('[Repair] Connecting');
 
       let store;
+      let domains;
       let client;
 
       try {
@@ -72,8 +88,18 @@ class DomainDriver extends Driver {
         // Setup client
         client = new Client(store);
 
-        // Get domain
-        await client.getDomain(device.getData().id);
+        // Get domains
+        domains = await client.call('ADDITIONAL_DOMAINS');
+
+        // No domains found
+        if (blank(domains)) {
+          throw new Error('error.no_domains_found');
+        }
+
+        // Check if domain exists
+        if (blank(domains[device.getData().id])) {
+          throw new Error('error.domain_not_found');
+        }
 
         // Save store values
         await device.setStoreValues(store);
@@ -85,6 +111,7 @@ class DomainDriver extends Driver {
         throw new Error(this.homey.__(err.message) || err.message);
       } finally {
         store = null;
+        domains = null;
         client = null;
       }
     };

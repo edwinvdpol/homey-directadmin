@@ -24,7 +24,8 @@
   "dependencies": {
     "abort-controller": "^3.0.0",
     "homey-log": "^2.1.0",
-    "node-fetch": "^2.7.0"
+    "node-fetch": "^2.7.0",
+    "prettysize": "^2.0.0"
   },
   "devDependencies": {
     "@types/homey": "npm:homey-apps-sdk-v3-types@^0.3.5",
