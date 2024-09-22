@@ -1,6 +1,5 @@
 'use strict';
 
-const pretty = require('prettysize');
 const Device = require('../../lib/Device');
 const { blank } = require('../../lib/Utils');
 
@@ -80,37 +79,6 @@ class DomainDevice extends Device {
     }
 
     this.setCapabilityValue('suspended', false).catch(this.error);
-  }
-
-  /*
-  | Support functions
-  */
-
-  // Domain bandwidth text
-  getBandwidth(bandwidth, limit) {
-    let response = bandwidth > 0 ? pretty((bandwidth * this.constructor.BYTESINMB)) : '0';
-
-    if (limit !== 'unlimited') {
-      response += ` / ${pretty((parseFloat(limit) * this.constructor.BYTESINMB))}`;
-    }
-
-    return response;
-  }
-
-  // Email disk usage text
-  getEmailQuota(quota) {
-    return quota > 0 ? pretty((quota * this.constructor.BYTESINMB)) : '0';
-  }
-
-  // Disk usage text
-  getQuota(quota, limit) {
-    let response = quota > 0 ? pretty((quota * this.constructor.BYTESINMB)) : '0';
-
-    if (limit !== 'unlimited') {
-      response += ` / ${pretty((parseFloat(limit) * this.constructor.BYTESINMB))}`;
-    }
-
-    return response;
   }
 
 }
