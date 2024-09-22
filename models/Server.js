@@ -1,7 +1,5 @@
 'use strict';
 
-const { blank } = require('../lib/Utils');
-
 class Server {
 
   /**
@@ -10,9 +8,20 @@ class Server {
    * @constructor
    */
   constructor(data) {
-    this.stats = data.stats;
-    this.license = data.license;
+    this.id = data.lid;
+    this.bandwidth = data.bandwidth;
+    this.ip = data.ip;
+    this.mysql = data.mysql;
+    this.name = data.name;
+    this.nemailf = data.nemailf;
+    this.nemails = data.nemails;
+    this.nresellers = data.nresellers;
+    this.nusers = data.nusers;
+    this.os_name = data.os_name;
+    this.update_available = data.update_available;
     this.store = data.store;
+    this.version = data.version;
+    this.vdomains = data.vdomains;
   }
 
   /**
@@ -24,14 +33,14 @@ class Server {
     if (!this.valid) return {};
 
     return Object.fromEntries(Object.entries({
-      databases: Number(this.stats.mysql),
-      domains: Number(this.stats.vdomains),
-      email_accounts: Number(this.stats.nemails),
-      email_forwarders: Number(this.stats.nemailf),
-      resellers: Number(this.stats.nresellers),
-      server_bandwidth: Number(this.stats.bandwidth / 1024),
-      update_available: this.license.update_available !== '0',
-      users: Number(this.stats.nusers),
+      databases: Number(this.mysql),
+      domains: Number(this.vdomains),
+      email_accounts: Number(this.nemails),
+      email_forwarders: Number(this.nemailf),
+      resellers: Number(this.nresellers),
+      server_bandwidth: Number(this.bandwidth / 1024),
+      update_available: this.update_available !== '0',
+      users: Number(this.nusers),
     }).filter(([_, v]) => v || typeof v === 'boolean'));
   }
 
@@ -41,12 +50,10 @@ class Server {
    * @return {Object}
    */
   get data() {
-    if (!this.valid) return {};
-
     return {
-      name: this.license.name,
+      name: this.name,
       data: {
-        id: this.license.lid,
+        id: this.id,
       },
       settings: this.settings,
       store: this.store,
@@ -56,16 +63,14 @@ class Server {
   /**
    * Return device settings.
    *
-   * @return {Object}
+   * @return {{ip: string, name: string, os_name: string, version: string}}
    */
   get settings() {
-    if (!this.valid) return {};
-
     return {
-      ip: this.license.ip || '-',
-      name: this.license.name || '-',
-      os_name: this.license.os_name || '-',
-      version: this.license.version || '-',
+      ip: this.ip || '-',
+      name: this.name || '-',
+      os_name: this.os_name || '-',
+      version: this.version || '-',
     };
   }
 
@@ -75,9 +80,7 @@ class Server {
    * @return {boolean}
    */
   get valid() {
-    if (blank(this.license) || blank(this.stats)) return false;
-
-    const version = Number(this.license.version.replace(/\./g, ''));
+    const version = Number(this.version.replace(/\./g, ''));
 
     return version >= 1580;
   }
