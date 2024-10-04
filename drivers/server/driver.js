@@ -40,7 +40,7 @@ class ServerDriver extends Driver {
         }
 
         data.id = license.lid;
-        data.name = `DA v${license.version} server`;
+        data.name = license.name || `DA v${license.version} server`;
 
         // Emit create device event
         await session.emit('create', this.getDeviceData(data));
