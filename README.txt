@@ -1,13 +1,7 @@
-DirectAdmin is web hosting control panel software that lets you administer your website and hosting options using a graphical, web-based interface.
+The DirectAdmin Homey App allows you to seamlessly integrate your DirectAdmin hosting control panel with your Homey smart home system. This app provides real-time insights and control over your hosting environment, directly from Homey’s interface, making server management more accessible and efficient.
 
-You can manage an unlimited number of websites, email accounts, etc. using a DirectAdmin control panel. DirectAdmin automates tasks so that web servers can be easily shared and give website owners a way to quickly set-up and manage websites.
+With the DirectAdmin Homey App, you can monitor key metrics such as disk usage, bandwidth consumption, and active domains. Automate notifications to alert you when resource thresholds are reached, or integrate actions into Homey flows to ensure your hosting environment remains stable and secure. For example, set up automated warnings if disk space runs low or bandwidth usage exceeds a set limit.
 
-This app allows you to get various server- and domain details and statistics.
+Whether you’re a hosting professional or managing personal servers, the DirectAdmin Homey App enhances your hosting experience by combining powerful insights with Homey’s automation capabilities.
 
-You also will be able to create flows based these statistics and more.
-
-Homey will automatically refresh the data every 15 minutes.
-
-------- Important -------
-
-The refresh interval of the data shown for some statistics in the app, depends on how many times a day the stats tally command is executed on the server. By default, this is once a day. Please contact your server administrator if you have any questions about this.
+To use this app, you need access to a DirectAdmin account.
