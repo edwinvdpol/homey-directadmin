@@ -6,5 +6,5 @@
   },
   "getable": true,
   "setable": false,
-  "icon": "/assets/domain.svg"
+  "icon": "/assets/capabilities/domain.svg"
 }

@@ -508,7 +508,7 @@
       },
       "getable": true,
       "setable": false,
-      "icon": "/assets/domain.svg"
+      "icon": "/assets/capabilities/domain.svg"
     },
     "bandwidth": {
       "type": "number",
@@ -521,7 +521,7 @@
       "insights": true,
       "decimals": 2,
       "units": "MB",
-      "icon": "/assets/bandwidth.svg"
+      "icon": "/assets/capabilities/bandwidth.svg"
     },
     "databases": {
       "type": "number",
@@ -531,7 +531,7 @@
       },
       "getable": true,
       "setable": false,
-      "icon": "/assets/database.svg"
+      "icon": "/assets/capabilities/database.svg"
     },
     "domains": {
       "type": "number",
@@ -541,7 +541,7 @@
       },
       "getable": true,
       "setable": false,
-      "icon": "/assets/domain.svg"
+      "icon": "/assets/capabilities/domain.svg"
     },
     "email_accounts": {
       "type": "number",
@@ -551,7 +551,7 @@
       },
       "getable": true,
       "setable": false,
-      "icon": "/assets/email.svg"
+      "icon": "/assets/capabilities/email.svg"
     },
     "email_forwarders": {
       "type": "number",
@@ -561,7 +561,7 @@
       },
       "getable": true,
       "setable": false,
-      "icon": "/assets/email.svg"
+      "icon": "/assets/capabilities/email.svg"
     },
     "quota": {
       "type": "number",
@@ -574,7 +574,7 @@
       "insights": true,
       "decimals": 2,
       "units": "MB",
-      "icon": "/assets/harddrive.svg"
+      "icon": "/assets/capabilities/harddrive.svg"
     },
     "resellers": {
       "type": "number",
@@ -584,7 +584,7 @@
       },
       "getable": true,
       "setable": false,
-      "icon": "/assets/reseller.svg"
+      "icon": "/assets/capabilities/reseller.svg"
     },
     "server_bandwidth": {
       "type": "number",
@@ -597,7 +597,7 @@
       "insights": true,
       "decimals": 2,
       "units": "GB",
-      "icon": "/assets/bandwidth.svg"
+      "icon": "/assets/capabilities/bandwidth.svg"
     },
     "suspended": {
       "type": "boolean",
@@ -607,7 +607,7 @@
       },
       "getable": true,
       "setable": false,
-      "icon": "/assets/server_alert.svg"
+      "icon": "/assets/capabilities/server_alert.svg"
     },
     "update_available": {
       "type": "boolean",
@@ -617,7 +617,7 @@
       },
       "getable": true,
       "setable": false,
-      "icon": "/assets/server_alert.svg"
+      "icon": "/assets/capabilities/server_alert.svg"
     },
     "users": {
       "type": "number",
@@ -627,7 +627,7 @@
       },
       "getable": true,
       "setable": false,
-      "icon": "/assets/users.svg"
+      "icon": "/assets/capabilities/users.svg"
     }
   }
 }

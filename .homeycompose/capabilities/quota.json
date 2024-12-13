@@ -9,5 +9,5 @@
   "insights": true,
   "decimals": 2,
   "units": "MB",
-  "icon": "/assets/harddrive.svg"
+  "icon": "/assets/capabilities/harddrive.svg"
 }

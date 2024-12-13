@@ -9,5 +9,5 @@
   "insights": true,
   "decimals": 2,
   "units": "GB",
-  "icon": "/assets/bandwidth.svg"
+  "icon": "/assets/capabilities/bandwidth.svg"
 }
