@@ -16,7 +16,9 @@
     "version": "Versie __version__ wordt niet ondersteund"
   },
   "pair": {
+    "password": "Wachtwoord",
     "port": "Poort",
-    "saving": "Opslaan"
+    "title": "Log in met je gegevens",
+    "username": "Gebruikersnaam"
   }
 }

@@ -16,7 +16,9 @@
     "version": "Version __version__ is not supported"
   },
   "pair": {
+    "password": "Password",
     "port": "Port",
-    "saving": "Saving"
+    "title": "Log in with your credentials",
+    "username": "Username"
   }
 }
