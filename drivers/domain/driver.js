@@ -45,7 +45,7 @@ class DomainDriver extends Driver {
           foundDevices.push(this.getDeviceData(data));
         });
       } catch (err) {
-        this.error('[Pair]', err.toString());
+        this.error('[Pair]', err.message);
         throw new Error(this.homey.__(err.message) || err.message);
       } finally {
         store = null;
@@ -107,7 +107,7 @@ class DomainDriver extends Driver {
         // Close the pair session
         await session.done();
       } catch (err) {
-        this.error('[Repair]', err.toString());
+        this.error('[Repair]', err.message);
         throw new Error(this.homey.__(err.message) || err.message);
       } finally {
         store = null;
