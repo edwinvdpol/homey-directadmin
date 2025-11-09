@@ -22,7 +22,6 @@
     "lint": "eslint --ext .js,.ts --ignore-path .gitignore ."
   },
   "dependencies": {
-    "@drenso/homey-log": "^10.17.0",
     "abort-controller": "^3.0.0",
     "node-fetch": "^2.7.0"
   },
