@@ -103,7 +103,7 @@ class ServerDriver extends Driver {
         // Close the pair session
         await session.done();
       } catch (err) {
-        this.error('[Repair]', err.message));
+        this.error('[Repair]', err.message);
         throw new Error(this.homey.__(err.message) || err.message);
       } finally {
         store = null;
