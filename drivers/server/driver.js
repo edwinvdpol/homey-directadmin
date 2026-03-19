@@ -2,6 +2,7 @@
 
 const Driver = require('../../lib/Driver');
 const Client = require('../../lib/Client');
+const Data = require('../../lib/Data');
 
 class ServerDriver extends Driver {
 
@@ -13,20 +14,20 @@ class ServerDriver extends Driver {
   async onPair(session) {
     this.log('[Pair] Started');
 
-    const onLogin = async (data) => {
+    const onLogin = async (raw) => {
       this.log('[Pair] Connecting to server');
 
-      let store;
+      let data;
       let license;
       let version;
       let client;
 
       try {
-        // Get store data
-        store = this.getStoreData(data);
+        // Create data object
+        data = new Data(raw);
 
         // Setup client
-        client = new Client(store);
+        client = new Client(data.store);
 
         // Get license
         license = await client.call('LICENSE');
@@ -43,12 +44,12 @@ class ServerDriver extends Driver {
         data.name = license.name || `DA v${license.version} server`;
 
         // Emit create device event
-        await session.emit('create', this.getDeviceData(data));
+        await session.emit('create', data.device);
       } catch (err) {
         this.error('[Pair]', err.message);
         throw new Error(this.homey.__(err.message) || err.message);
       } finally {
-        store = null;
+        data = null;
         license = null;
         version = null;
         client = null;
@@ -71,20 +72,20 @@ class ServerDriver extends Driver {
       this.log('[Repair] Session disconnected');
     };
 
-    const onLogin = async (data) => {
+    const onLogin = async (raw) => {
       this.log('[Repair] Connecting');
 
-      let store;
+      let data;
       let license;
       let version;
       let client;
 
       try {
-        // Get store data
-        store = this.getStoreData(data);
+        // Create data object
+        data = new Data(raw);
 
         // Setup client
-        client = new Client(store);
+        client = new Client(data.store);
 
         // Get license
         license = await client.call('LICENSE');
@@ -98,7 +99,7 @@ class ServerDriver extends Driver {
         }
 
         // Save store values
-        await device.setStoreValues(store);
+        await device.setStoreValues(data.store);
 
         // Close the pair session
         await session.done();
@@ -106,7 +107,7 @@ class ServerDriver extends Driver {
         this.error('[Repair]', err.message);
         throw new Error(this.homey.__(err.message) || err.message);
       } finally {
-        store = null;
+        data = null;
         license = null;
         version = null;
         client = null;

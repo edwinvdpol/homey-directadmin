@@ -3,6 +3,7 @@
 const Driver = require('../../lib/Driver');
 const { blank } = require('../../lib/Utils');
 const Client = require('../../lib/Client');
+const Data = require('../../lib/Data');
 
 class DomainDriver extends Driver {
 
@@ -16,19 +17,19 @@ class DomainDriver extends Driver {
 
     const foundDevices = [];
 
-    const onLogin = async (data) => {
+    const onLogin = async (raw) => {
       this.log('[Pair] Connecting to server');
 
-      let store;
+      let data;
       let domains;
       let client;
 
       try {
-        // Get store data
-        store = this.getStoreData(data);
+        // Create data object
+        data = new Data(raw);
 
         // Setup client
-        client = new Client(store);
+        client = new Client(data.store);
 
         // Get domains
         domains = await client.call('ADDITIONAL_DOMAINS');
@@ -42,13 +43,13 @@ class DomainDriver extends Driver {
           data.id = domain;
           data.name = domain;
 
-          foundDevices.push(this.getDeviceData(data));
+          foundDevices.push(data.device);
         });
       } catch (err) {
         this.error('[Pair]', err.message);
         throw new Error(this.homey.__(err.message) || err.message);
       } finally {
-        store = null;
+        data = null;
         domains = null;
         client = null;
       }
@@ -74,19 +75,19 @@ class DomainDriver extends Driver {
       this.log('[Repair] Session disconnected');
     };
 
-    const onLogin = async (data) => {
+    const onLogin = async (raw) => {
       this.log('[Repair] Connecting');
 
-      let store;
+      let data;
       let domains;
       let client;
 
       try {
-        // Get store data
-        store = this.getStoreData(data);
+        // Create data object
+        data = new Data(raw);
 
         // Setup client
-        client = new Client(store);
+        client = new Client(data.store);
 
         // Get domains
         domains = await client.call('ADDITIONAL_DOMAINS');
@@ -102,7 +103,7 @@ class DomainDriver extends Driver {
         }
 
         // Save store values
-        await device.setStoreValues(store);
+        await device.setStoreValues(data.store);
 
         // Close the pair session
         await session.done();
@@ -110,7 +111,7 @@ class DomainDriver extends Driver {
         this.error('[Repair]', err.message);
         throw new Error(this.homey.__(err.message) || err.message);
       } finally {
-        store = null;
+        data = null;
         domains = null;
         client = null;
       }
