@@ -3,17 +3,17 @@
     "connecting": "Connecting..."
   },
   "error": {
-    "400": "Request to server is incorrect",
-    "401": "Login details are incorrect",
-    "403": "Access to server is denied",
-    "50x": "Server is unavailable",
-    "domain_deactivated": "Domain is deactivated",
-    "domain_not_found": "Domain not found",
-    "domain_suspended": "Domain is suspended",
-    "no_domains_found": "No domains found",
-    "network": "Server is unreachable",
-    "unknown": "An unknown error has occurred",
-    "version": "Version __version__ is not supported"
+    "400": "Request to server is incorrect.",
+    "401": "Login details are incorrect.",
+    "403": "Access to server is denied.",
+    "50x": "Server is unavailable.",
+    "domain_deactivated": "Domain is deactivated.",
+    "domain_not_found": "Domain not found.",
+    "domain_suspended": "Domain is suspended.",
+    "no_domains_found": "No domains found.",
+    "network": "Server is unreachable.",
+    "unknown": "An unknown error has occurred.",
+    "version": "Version __version__ is not supported."
   },
   "pair": {
     "password": "Password",
